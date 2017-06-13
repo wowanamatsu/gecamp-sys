@@ -4,14 +4,20 @@
   <title>Gecamp</title>
   <%= csrf_meta_tags %>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
+<% if user_signed_in? %>
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
 
@@ -108,23 +114,23 @@
             </a>
             <ul class="treeview-menu">
               <li>
-              <a href="#">..........</a>
+                <a href="#">..........</a>
                 <%#= link_to 'Estados', estados_path %>
               </li>
               <li>
-              <a href="#">..........</a>
+                <a href="#">..........</a>
                 <%#= link_to 'Municípios', municipios_path %>
               </li>
               <li>
-              <a href="#">..........</a>
+                <a href="#">..........</a>
                 <%#= link_to 'Cidades', cidades_path %>
               </li>
               <li>
-              <a href="#">..........</a>
+                <a href="#">..........</a>
                 <%#= link_to 'Bairros', bairros_path %>
               </li>
               <li>
-              <a href="#">..........</a>
+                <a href="#">..........</a>
                 <%#= link_to 'Grupos', grupos_path %>
               </li>
             </ul>
@@ -146,6 +152,7 @@
       </section> -->
 
       <section class="content">
+        <%= current_user.email %> | <%= link_to 'Sair', '/logout', :method => :delete %>
         <%= flash[:notice] %>
         <%= flash[:error] %>
         <%= yield %>
@@ -158,11 +165,14 @@
       </div>
       <strong>Copyright &copy; <%= Time.now.strftime('%Y') %> <a href="#">Company</a>.</strong> All rights reserved.
     </footer>
-
-
-
     <div class="control-sidebar-bg"></div>
   </div>
-
 </body>
+
+<% else %>
+<body>
+ <%= yield %>
+</body>
+<% end %>
+
 </html>
