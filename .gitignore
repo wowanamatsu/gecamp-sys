@@ -27,6 +27,11 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 config/initializers/secret_token.rb~
 config/initializers/secret_token.*
+
+config/initializers/devise.rb
+config/initializers/devise.rb~
+config/initializers/devise.*
+
 config/secrets.yml
 config/secrets.*
 config/database.yml
