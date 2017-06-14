@@ -1,32 +1,61 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="box-body">
+  <%= form_for(@user) do |f| %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control input-sm' %>
+    <%= f.error_span(:name)%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control input-sm' %>
+    <%= f.error_span(:email)%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :role, 'Papel no sistema' %>
+    <%= f.select :role, options_for_select([
+          ['Normal', :normal], 
+          ['Convidado', :convidado], 
+          ['Admin', :admin], ['Staff', :staff]
+        ], @user.role), {}, {:class => 'form-control input-sm'} %>
+    <%= f.error_span(:role) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status, '(Inativo/Ativo)' %>
+    <%= f.select :status, options_for_select([
+          ['Inativo', :inativo], 
+          ['Ativo', :ativo], 
+        ], @user.status), {}, {:class => 'form-control input-sm'} %>
+    <%= f.error_span(:status) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, 'Senha (A senha de conter: 8 dígitos; números, símbolos, letras maiúsculas e minúsculas)' %>
+    <%= f.password_field :password, class: 'form-control input-sm' %>
+    <div class="has-error">
+      <span class="help-block">
+      <% if @user.errors[:password] %>
+      <%= @user.errors[:password][0] %>
       <% end %>
-      </ul>
+      </span>
     </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control input-sm' %>
+    <div class="has-error">
+      <span class="help-block">
+      <%= 'as senhas não são iguais.' if @user.errors[:password_confirmation][0] %>
+      </span>
+    </div>
+  </div>
+
+  <div class="box-footer">
+    <%= f.submit 'Salvar Registro', class: 'btn btn-primary' %>
+  </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

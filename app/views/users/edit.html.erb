@@ -1,6 +1,7 @@
-<h1>Editing User</h1>
+<div class="box box-success">
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <div class="box-header with-border">
+    <h3 class="box-title"><strong>Editar - <%= @user.name %> </strong></h3>
+  </div>
+  <%= render 'form' %>
+</div>
