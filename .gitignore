@@ -7,6 +7,11 @@
 !/log/.keep
 !/tmp/.keep
 
+restart
+public/assets/*
+public/assets/
+public/assets/.sprockets-manifest-28a437300651ef60142412bfd5bdc31e.json
+
 *.rbc
 capybara-*.html
 .rspec
