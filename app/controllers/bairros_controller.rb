@@ -4,7 +4,9 @@ class BairrosController < ApplicationController
   # GET /bairros
   # GET /bairros.json
   def index
-    @bairros = Bairro.all
+    @bairros = Bairro.select(:id, :nome, :cidade_id)
+              .order(:nome).page(params[:page] || 1).per(10)
+    render action: :index, layout: request.xhr? == nil
   end
 
   # GET /bairros/1

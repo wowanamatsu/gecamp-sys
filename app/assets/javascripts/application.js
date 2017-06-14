@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require app.min
+//= require bairros
 //= require rails-ujs
