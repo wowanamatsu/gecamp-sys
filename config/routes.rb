@@ -9,5 +9,10 @@ Rails.application.routes.draw do
     delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
   end
 
+  resources :estados
+  resources :municipios
+  resources :cidades
+  resources :bairros
+
   root to: 'home#index'
 end

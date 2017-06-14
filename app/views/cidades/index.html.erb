@@ -1,0 +1,34 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Cidades Cadastradas</h3>
+
+    <div class="box-tools">
+      <%= link_to 'Nova Cidade', new_cidade_path, class: 'btn btn-sm btn-primary' %>
+    </div>
+  </div>
+
+  <div class="box-body no-padding">
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="20%">Nome</th>
+          <th width="30%">Municipio</th>
+          <th width="50%" colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @cidades.each do |cidade| %>
+        <tr>
+          <td><%= cidade.nome %></td>
+          <td><%= cidade.municipio %></td>
+          <td style="text-align: right">
+            <%= link_to 'Editar', edit_cidade_path(cidade), class: 'btn btn-xs btn-success' %>
+            <%= link_to 'Deletar', cidade, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
