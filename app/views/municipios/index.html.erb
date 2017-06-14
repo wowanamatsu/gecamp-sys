@@ -1,0 +1,34 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Municípios Cadastrados</h3>
+
+    <div class="box-tools">
+      <%= link_to 'Novo Municipio', new_municipio_path, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+
+  <div class="box-body no-padding">
+    <table class="table">
+     <thead>
+      <tr>
+        <th width="30%">Nome</th>
+        <th width="20%">Estado</th>
+        <th width="50%" colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @municipios.each do |municipio| %>
+      <tr>
+        <td><%= municipio.nome %></td>
+        <td><%= municipio.estado %></td>
+        <td style="text-align: right">
+          <%= link_to 'Editar', edit_municipio_path(municipio), class: 'btn btn-xs btn-success' %>
+          <%= link_to 'Deletar', municipio, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

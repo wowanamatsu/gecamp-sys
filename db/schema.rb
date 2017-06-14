@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613160355) do
+ActiveRecord::Schema.define(version: 20170614175310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bairros", force: :cascade do |t|
+    t.string "nome"
+    t.bigint "cidade_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cidade_id"], name: "index_bairros_on_cidade_id"
+  end
+
+  create_table "cidades", force: :cascade do |t|
+    t.string "nome"
+    t.bigint "municipio_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["municipio_id"], name: "index_cidades_on_municipio_id"
+  end
+
+  create_table "estados", force: :cascade do |t|
+    t.string "nome"
+    t.string "sigla"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "municipios", force: :cascade do |t|
+    t.string "nome"
+    t.bigint "estado_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["estado_id"], name: "index_municipios_on_estado_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: ""
@@ -29,8 +60,13 @@ ActiveRecord::Schema.define(version: 20170613160355) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
+    t.integer "status", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bairros", "cidades"
+  add_foreign_key "cidades", "municipios"
+  add_foreign_key "municipios", "estados"
 end

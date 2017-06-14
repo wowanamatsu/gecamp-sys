@@ -1,0 +1,38 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Estados Cadastrados</h3>
+
+    <div class="box-tools">
+      <%= link_to 'Novo Estado', new_estado_path, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+
+  <div class="box-body no-padding">
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="30%">Nome</th>
+          <th width="20%">Sigla</th>
+          <th width="50%" colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @estados.each do |estado| %>
+        <tr>
+          <td><%= estado.nome %></td>
+          <td><%= estado.sigla %></td>
+          <td style="text-align: right">
+            <%= link_to 'Editar', edit_estado_path(estado), class: 'btn btn-xs btn-success' %>
+            <%= link_to 'Deletar', estado, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+
