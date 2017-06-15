@@ -1,10 +1,12 @@
 class CidadesController < ApplicationController
   before_action :set_cidade, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /cidades
   # GET /cidades.json
   def index
-    @cidades = Cidade.all
+    @cidades = Cidade.select(:id, :nome, :municipio_id).order(:nome).page(params[:page] || 1).per(10)
+    render action: :index, layout: request.xhr? == nil
   end
 
   # GET /cidades/1

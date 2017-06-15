@@ -1,10 +1,13 @@
 class MunicipiosController < ApplicationController
   before_action :set_municipio, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /municipios
   # GET /municipios.json
   def index
-    @municipios = Municipio.all
+    @municipios = Municipio.select(:id, :nome, :estado_id)
+                  .order(:nome).page(params[:page] || 1).per(10)
+    render action: :index, layout: request.xhr? == nil
   end
 
   # GET /municipios/1

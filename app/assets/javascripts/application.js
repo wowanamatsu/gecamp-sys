@@ -12,4 +12,5 @@
 //
 //= require app.min
 //= require bairros
+//= require municipios
 //= require rails-ujs

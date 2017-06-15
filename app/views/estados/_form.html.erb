@@ -1,27 +1,21 @@
- <div class="box box-success">
 
-  <div class="box-header with-border">
-    <h3 class="box-title">Cadastrar Novo Estado</h3>
+<div class="box-body">
+  <%= form_with(model: @estado, local: true, html: {role: 'form'}) do |form| %>
+
+  <div class="form-group">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :estado_nome, placeholder: 'Nome', class: 'form-control input-sm' %>
+    <%= form.error_span(:nome) %>
   </div>
 
-  <div class="box-body">
-    <%= form_with(model: estado, local: true, html: {role: 'form'}) do |form| %>
-
-    <div class="form-group">
-      <%= form.label :nome %>
-      <%= form.text_field :nome, id: :estado_nome, placeholder: 'Nome', class: 'form-control input-sm' %>
-      <%= form.error_span(:nome) %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :sigla %>
-      <%= form.text_field :sigla, id: :estado_sigla, maxlength: 2, placeholder: 'Sigla', class: 'form-control input-sm' %>
-      <%= form.error_span(:sigla) %>
-    </div>
-
-    <div class="box-footer">
-      <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
-    </div>
-    <% end %>
+  <div class="form-group">
+    <%= form.label :sigla %>
+    <%= form.text_field :sigla, id: :estado_sigla, maxlength: 2, placeholder: 'Sigla', class: 'form-control input-sm' %>
+    <%= form.error_span(:sigla) %>
   </div>
+
+  <div class="box-footer">
+    <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
+  </div>
+  <% end %>
 </div>

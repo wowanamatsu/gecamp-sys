@@ -1,6 +1,7 @@
 class BairrosController < ApplicationController
   before_action :set_bairro, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /bairros
   # GET /bairros.json
   def index

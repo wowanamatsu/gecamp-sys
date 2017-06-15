@@ -20,6 +20,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'kaminari', '~> 0.16.3'
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

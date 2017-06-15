@@ -19,7 +19,7 @@ $(function() {
   $(document.body).on('click', 'nav.pagination a', function(e) {
     e.preventDefault();
     var url = $(this).attr('href');
-    $("#bairros").html(loadingHTML).load(url, function(){
+    $("#cidades").html(loadingHTML).load(url, function(){
       window.history.pushState(url, window.title, url);
     });
     return false;
