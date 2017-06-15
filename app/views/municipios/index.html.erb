@@ -22,7 +22,7 @@
         <% @municipios.each do |municipio| %>
         <tr>
           <td><%= municipio.nome %></td>
-          <td><%= municipio.estado %></td>
+          <td><%= municipio.estado.try(:nome) %></td>
           <td style="text-align: right">
             <%= link_to 'Editar', edit_municipio_path(municipio), class: 'btn btn-xs btn-success' %>
             <%= link_to 'Deletar', municipio, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>

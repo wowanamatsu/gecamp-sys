@@ -2,12 +2,60 @@ class MunicipiosController < ApplicationController
   before_action :set_municipio, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
-  # GET /municipios
-  # GET /municipios.json
   def index
-    @municipios = Municipio.select(:id, :nome, :estado_id)
-                  .order(:nome).page(params[:page] || 1).per(10)
+
+    if params[:select2_trigger]
+      if params[:q]
+        @municipios = Municipio.select("municipios.id, municipios.nome")
+         .where("(TRANSLATE(lower(municipios.nome), 
+          'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
+          'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+          like '%#{params[:q].downcase}%' or lower(municipios.nome) 
+          like '%#{params[:q].downcase}%')")
+        @municipio = @municipios.page(params[:page] || 1).per(10)
+
+      end
+
+      respond_to do |format|  
+       format.html
+       format.json { 
+         render :json => {
+           :municipios => @municipio,
+           :total => @municipio.count,
+           :links => { :self => @municipio.current_page , :next => @municipio.next_page}
+         } 
+       }
+     end
+
+   else
+    @municipios = Municipio.select(:id, :nome, :estado_id).includes(:estado)
+                  .order(estado_id: :desc).page(params[:page] || 1).per(10)
     render action: :index, layout: request.xhr? == nil
+
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render :json => @municipios }
+      end      
+    end
+
+
+
+
+
+
+
+
+
+
+
+    # @municipios = Municipio.select(:id, :nome, :estado_id).includes(:estado)
+    #               .order(estado_id: :desc).page(params[:page] || 1).per(10)
+    # render action: :index, layout: request.xhr? == nil
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render :json => @municipios } 
+    # end
   end
 
   # GET /municipios/1
@@ -71,4 +119,4 @@ class MunicipiosController < ApplicationController
     def municipio_params
       params.require(:municipio).permit(:nome, :estado_id)
     end
-end
+  end

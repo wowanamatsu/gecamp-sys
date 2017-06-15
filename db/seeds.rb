@@ -1,5 +1,5 @@
 
-## Lista de Estado da Cadastrados
+## Lista de Estados Cadastrados
 Estado.create(:id => 12, :nome => 'Acre', :sigla => 'AC')
 Estado.create(:id => 27, :nome => 'Alagoas', :sigla => 'AL')
 Estado.create(:id => 13, :nome => 'Amazonas', :sigla => 'AM')
@@ -5631,3 +5631,38 @@ Municipio.create(:nome => "Tupirama", :estado_id => 17) #TO
 Municipio.create(:nome => "Tupiratins", :estado_id => 17) #TO
 Municipio.create(:nome => "Wanderlândia", :estado_id => 17) #TO
 Municipio.create(:nome => "Xambioá", :estado_id => 17) #TO
+
+## Adicionar cidades por município
+### Cidade de Brasilia
+df = Municipio.select(:id).where(estado_id: 53)
+Cidade.create(:nome => "Brasília", :municipio_id => df[0])
+Cidade.create(:nome => "Gama", :municipio_id => df[0])
+Cidade.create(:nome => "Taguatinga", :municipio_id => df[0])
+Cidade.create(:nome => "Brazlândia", :municipio_id => df[0])
+Cidade.create(:nome => "Sobradinho", :municipio_id => df[0])
+Cidade.create(:nome => "Planaltina", :municipio_id => df[0])
+Cidade.create(:nome => "Paranoá", :municipio_id => df[0])
+Cidade.create(:nome => "Núcleo Bandeirante", :municipio_id => df[0])
+Cidade.create(:nome => "Ceilândia", :municipio_id => df[0])
+Cidade.create(:nome => "Guará", :municipio_id => df[0])
+Cidade.create(:nome => "Cruzeiro", :municipio_id => df[0])
+Cidade.create(:nome => "Samambaia", :municipio_id => df[0])
+Cidade.create(:nome => "Santa Maria", :municipio_id => df[0])
+Cidade.create(:nome => "São Sebastião", :municipio_id => df[0])
+Cidade.create(:nome => "Lago Sul", :municipio_id => df[0])
+Cidade.create(:nome => "Riacho Fundo", :municipio_id => df[0])
+Cidade.create(:nome => "Lago Norte", :municipio_id => df[0])
+Cidade.create(:nome => "Candangolândia", :municipio_id => df[0])
+Cidade.create(:nome => "Águas Claras", :municipio_id => df[0])
+Cidade.create(:nome => "Riacho Fundo II", :municipio_id => df[0])
+Cidade.create(:nome => "Sudoeste/Octogonal", :municipio_id => df[0])
+Cidade.create(:nome => "Varjão", :municipio_id => df[0])
+Cidade.create(:nome => "Park Way", :municipio_id => df[0])
+Cidade.create(:nome => "SCIA", :municipio_id => df[0])
+Cidade.create(:nome => "Sobradinho II", :municipio_id => df[0])
+Cidade.create(:nome => "Itapoã", :municipio_id => df[0])
+Cidade.create(:nome => "SIA", :municipio_id => df[0])
+Cidade.create(:nome => "Vicente Pires", :municipio_id => df[0])
+Cidade.create(:nome => "Fercal", :municipio_id => df[0])
+Cidade.create(:nome => "Recanto das Emas", :municipio_id => df[0])
+Cidade.create(:nome => "Jardim Botânico", :municipio_id => df[0])
