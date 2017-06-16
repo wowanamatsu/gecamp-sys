@@ -1,4 +1,4 @@
-<select id="cidade_municipios" class="form-control" name="cidade[municipio_id]">
+<select id="bairro_cidades" class="form-control" name="bairro[cidade_id]">
   <option value="">Selecione</option>
 </select>
 
@@ -27,9 +27,9 @@
       return repo.nome || repo.text;
     }
 
-    $('#cidade_municipios').select2({
+    $('#bairro_cidades').select2({
       ajax: {
-        url: "/municipios.json?select2_trigger=true",
+        url: "/cidades.json?select2_trigger=true",
         dataType: 'json',
         delay: 250,
         data: function (params) {
@@ -42,13 +42,13 @@
 
           params.page = params.page || 1;
           return {
-            results: data.municipios,
+            results: data.cidades,
             pagination: {
               more: (params.page * 30) < data.total_count
             }
           };
         },
-        cache: true
+        // cache: true
       },
       escapeMarkup: function (markup) { return markup; }, 
       minimumInputLength: 1,
@@ -57,8 +57,8 @@
     });
 
     <% if action_name == 'edit' %>
-      var $option1 = $('<option selected><%= @cidade.municipio.try(:nome) %></option>').val('<%= @cidade.municipio_id %>');
-      $('#cidade_municipios').append($option1).trigger('change');
+      var $option1 = $('<option selected><%= @bairro.cidade.try(:nome) %></option>').val('<%= @bairro.cidade_id %>');
+      $('#bairro_cidades').append($option1).trigger('change');
     <% end %>
   });
 </script>

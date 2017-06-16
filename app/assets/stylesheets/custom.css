@@ -10,6 +10,17 @@ body {
   background: red
 }
 
+/* Customização do boostrap */
+.btn-warning {
+  background-color: #e08e0b;
+}
+.btn-warning:hover {
+  color: green;
+  font-weight: bold;
+}
+
+
+/* Estilos da paginação do kaminari */
 .pagination a, .pagination span.current, .pagination span.gap {
   float: left;
   padding: 0 14px;

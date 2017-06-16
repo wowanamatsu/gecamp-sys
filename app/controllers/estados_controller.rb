@@ -5,7 +5,9 @@ class EstadosController < ApplicationController
   # GET /estados
   # GET /estados.json
   def index
-    @estados = Estado.all
+    @estados = Estado.select(:id, :nome, :sigla)
+    .order(nome: :desc).page(params[:page] || 1).per(8)
+    render action: :index, layout: request.xhr? == nil
   end
 
   # GET /estados/1
@@ -51,15 +53,15 @@ class EstadosController < ApplicationController
   # DELETE /estados/1
   # DELETE /estados/1.json
   def destroy
-     if not @estado.municipios.empty?
-      redirect_to estados_url, notice: "Não é possível deletar o estado #{@estado.nome}, existem municípios vinculadas."
-    else
-      @estado.destroy
-      redirect_to estados_url, notice: 'Estado was successfully destroyed.'
-    end
+   if not @estado.municipios.empty?
+    redirect_to estados_url, notice: "Não é possível deletar o estado #{@estado.nome}, existem municípios vinculadas."
+  else
+    @estado.destroy
+    redirect_to estados_url, notice: 'Estado was successfully destroyed.'
   end
+end
 
-  private
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_estado
       @estado = Estado.find(params[:id])
@@ -69,4 +71,4 @@ class EstadosController < ApplicationController
     def estado_params
       params.require(:estado).permit(:nome, :sigla)
     end
-end
+  end

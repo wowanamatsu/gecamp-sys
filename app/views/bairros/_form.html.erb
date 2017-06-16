@@ -11,12 +11,13 @@
 
   <div class="form-group">
     <%= form.label :cidade_id %>
-    <%= form.collection_select :cidade_id, Cidade.order(:nome), :id, :nome, {prompt: 'Selecione'}, {class: 'form-control'} %>
+    <%= render :partial => 'bairros_cidades_select2', :locals => {:form => form} %>
     <%= form.error_span(:cidade_id) %>
   </div>
 
   <div class="box-footer">
     <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', bairros_path, class: 'btn btn-warning' %>
   </div>
   <% end %>
 

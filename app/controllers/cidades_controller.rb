@@ -5,8 +5,33 @@ class CidadesController < ApplicationController
   # GET /cidades
   # GET /cidades.json
   def index
-    @cidades = Cidade.select(:id, :nome, :municipio_id).order(:nome).page(params[:page] || 1).per(10)
-    render action: :index, layout: request.xhr? == nil
+    if params[:select2_trigger]
+      if params[:q]
+        @cidades = Cidade.select("cidades.id, cidades.nome")
+        .where("(TRANSLATE(lower(cidades.nome), 
+          'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
+          'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+          like '%#{params[:q].downcase}%' or lower(cidades.nome) 
+          like '%#{params[:q].downcase}%')")
+
+        @cidade = @cidades.page(params[:page] || 1).per(10)
+      end
+
+      respond_to do |format|
+        format.html
+        format.json {
+          render :json => {
+            :cidades => @cidade,
+            :total => @cidade.count,
+            :links => { :self => @cidade.current_page, :next => @cidade.next_page}
+          }
+        }
+      end
+
+    else
+      @cidades = Cidade.select(:id, :nome, :municipio_id).order(:nome).page(params[:page] || 1).per(8)
+      render action: :index, layout: request.xhr? == nil
+    end
   end
 
   # GET /cidades/1
@@ -70,4 +95,4 @@ class CidadesController < ApplicationController
     def cidade_params
       params.require(:cidade).permit(:nome, :municipio_id)
     end
-end
+  end
