@@ -12,9 +12,10 @@
   <div class="form-group">
     <%= form.label :municipio_id %>
     <%#= form.collection_select :municipio_id, municipios, :id, :nome, {prompt: 'Selecione'}, {class: 'form-control municipios'} %>
-    <select id="municipios" class="form-control" name="cidade[municipio_id]">
+    <!-- <select id="cidade_municipios" class="form-control" name="cidade[municipio_id]">
       <option value="">Selecione</option>
-    </select>
+    </select> -->
+    <%= render :partial => 'cidades_select2', :locals => {:form => form} %>
     <%= form.error_span(:municipio_id) %>
   </div>
 

@@ -1,18 +1,18 @@
 $(function() {
-    var loadingHTML = "\
-    <div class='box box-success'>\
-      <div class='box-header'>\
-        <h1 class='box-title'>GecampSYS</h1>\
-      </div>\
-      <div class='box-body'>\
-        Carregando os dados do sistema\
-      </div>\
-      <div class='overlay'>\
-        <i class='fa fa-refresh fa-spin'></i>\
-      </div>\
-    </div>\
-  </div>\
-  ";
+    var loadingHTML =
+    "<div class='box box-success'>"+
+      "<div class='box-header'>"+
+        "<h1 class='box-title'>GecampSYS</h1>"+
+      "</div>"+
+      "<div class='box-body'>"+
+        "Carregando os dados do sistema"+
+      "</div>"+
+      "<div class='overlay'>"+
+        "<i class='fa fa-refresh fa-spin'></i>"+
+      "</div>"+
+    "</div>"+
+  "</div>";
+  
 
   $(document.body).off('click', 'nav.pagination a');
 

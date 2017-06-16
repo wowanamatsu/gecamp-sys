@@ -7,7 +7,7 @@ class MunicipiosController < ApplicationController
     if params[:select2_trigger]
       if params[:q]
         @municipios = Municipio.select("municipios.id, municipios.nome")
-         .where("(TRANSLATE(lower(municipios.nome), 
+        .where("(TRANSLATE(lower(municipios.nome), 
           'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
           'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
           like '%#{params[:q].downcase}%' or lower(municipios.nome) 
@@ -29,34 +29,10 @@ class MunicipiosController < ApplicationController
 
    else
     @municipios = Municipio.select(:id, :nome, :estado_id).includes(:estado)
-                  .order(estado_id: :desc).page(params[:page] || 1).per(10)
+    .order(estado_id: :desc).page(params[:page] || 1).per(10)
     render action: :index, layout: request.xhr? == nil
-
-    respond_to do |format|
-        format.html # index.html.erb
-        format.json { render :json => @municipios }
-      end      
-    end
-
-
-
-
-
-
-
-
-
-
-
-    # @municipios = Municipio.select(:id, :nome, :estado_id).includes(:estado)
-    #               .order(estado_id: :desc).page(params[:page] || 1).per(10)
-    # render action: :index, layout: request.xhr? == nil
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render :json => @municipios } 
-    # end
   end
+end
 
   # GET /municipios/1
   # GET /municipios/1.json
