@@ -138,9 +138,7 @@
       </section> -->
 
       <section class="content">
-        <%= flash[:notice] if flash[:notice] and !flash[:notice].include? 'Signed in successfully' %>
-        <%= flash[:error] %>
-        <%= flash[:alert] %>
+        <%= flash_boostrap %>
         <%= yield %>
       </section>
     </div>

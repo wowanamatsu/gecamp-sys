@@ -14,3 +14,4 @@
 //= require bairros
 //= require estados
 //= require rails-ujs
+//= require notify.min
