@@ -13,6 +13,7 @@
     <%= f.error_span(:email)%>
   </div>
 
+<% if current_user.admin? %>
   <div class="form-group">
     <%= f.label :role, 'Papel no sistema' %>
     <%= f.select :role, options_for_select([
@@ -31,6 +32,7 @@
         ], @user.status), {}, {:class => 'form-control input-sm'} %>
     <%= f.error_span(:status) %>
   </div>
+<% end %>
 
   <div class="form-group">
     <%= f.label :password, 'Senha (A senha de conter: 8 dígitos; números, símbolos, letras maiúsculas e minúsculas)' %>
