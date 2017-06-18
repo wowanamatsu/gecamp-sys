@@ -1,0 +1,42 @@
+<div id="pessoas">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Pessoas Cadastradas</h3>
+
+      <div class="box-tools">
+        <%= link_to 'Novo Cadastro', new_pessoa_path, class: 'btn btn-sm btn-primary' %>
+      </div>
+    </div>
+
+    <div class="box-body no-padding">
+
+      <table>
+        <thead>
+          <tr>
+          <th width="35%">Nome</th>
+            <th width="25%">Endereco</th>
+            <th width="15%">Telefone</th>
+            <th width="15%">Celular</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @pessoas.each do |pessoa| %>
+          <tr>
+            <td><%= pessoa.nome %></td>
+            <td><%= pessoa.endereco %></td>
+            <td><%= pessoa.telefone_residencial %></td>
+            <td><%= pessoa.celular %></td>
+            <td>
+              <%= link_to 'Show', pessoa %>
+              <%= link_to 'Edit', edit_pessoa_path(pessoa) %>
+              <%= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

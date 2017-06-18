@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614175310) do
+ActiveRecord::Schema.define(version: 20170618143802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,32 @@ ActiveRecord::Schema.define(version: 20170614175310) do
     t.index ["estado_id"], name: "index_municipios_on_estado_id"
   end
 
+  create_table "pessoas", force: :cascade do |t|
+    t.string "nome", null: false
+    t.string "endereco", null: false
+    t.bigint "cidade_id"
+    t.bigint "bairro_id"
+    t.string "cep"
+    t.string "telefone_residencial"
+    t.string "celular"
+    t.string "email"
+    t.string "estado_civil", null: false
+    t.string "sexo", null: false
+    t.string "cor"
+    t.decimal "renda_familiar"
+    t.integer "numero_de_filhos", default: 0, null: false
+    t.integer "numero_de_dependentes", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.bigint "pessoa_id"
+    t.text "observacoes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bairro_id"], name: "index_pessoas_on_bairro_id"
+    t.index ["cidade_id"], name: "index_pessoas_on_cidade_id"
+    t.index ["pessoa_id"], name: "index_pessoas_on_pessoa_id"
+    t.index ["user_id"], name: "index_pessoas_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: ""
     t.string "email", default: "", null: false
@@ -69,4 +95,8 @@ ActiveRecord::Schema.define(version: 20170614175310) do
   add_foreign_key "bairros", "cidades"
   add_foreign_key "cidades", "municipios"
   add_foreign_key "municipios", "estados"
+  add_foreign_key "pessoas", "bairros"
+  add_foreign_key "pessoas", "cidades"
+  add_foreign_key "pessoas", "pessoas"
+  add_foreign_key "pessoas", "users"
 end

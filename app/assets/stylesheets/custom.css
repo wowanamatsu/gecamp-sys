@@ -19,6 +19,10 @@ body {
   font-weight: bold;
 }
 
+.top-row {
+  margin-top: 10px;
+}
+
 
 /* Estilos da paginação do kaminari */
 .pagination a, .pagination span.current, .pagination span.gap {

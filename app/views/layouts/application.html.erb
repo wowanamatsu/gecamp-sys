@@ -96,7 +96,11 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li>
+        <%= link_to pessoas_path do %>
+          <i class="fa fa-link"></i> <span>Cadastrar Pessoa</span>
+        <% end %>
+        </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Configurações</span>
             <span class="pull-right-container">

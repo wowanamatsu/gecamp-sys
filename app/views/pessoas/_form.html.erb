@@ -1,0 +1,106 @@
+<div class="box-body">
+  <%= form_with(model: pessoa, local: true) do |form| %>
+
+  <div class="row top-row">
+    <div class="col-xs-12 col-sm-4">
+      <%= form.label :nome %>
+      <%= form.text_field :nome, id: :pessoa_nome, :placeholder => "Nome", class: 'form-control input-sm' %>
+      <%= form.error_span(:nome) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <%= form.label :endereco %>
+      <%= form.text_field :endereco, id: :pessoa_endereco, class: 'form-control input-sm' %>
+      <%= form.error_span(:endereco) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <%= form.label :pessoa_id, 'Indicado por' %>
+      <%= form.text_field :pessoa_id, id: :pessoa_pessoa_id, class: 'form-control input-sm' %>
+    </div>
+
+  </div>
+
+  <div class="row top-row">
+    <div class="col-xs-11 col-sm-4">
+      <%= form.label :cidade_id %>
+      <%= render :partial => 'pessoas_cidades_select2', :locals => {:form => form} %>
+    </div>
+
+    <div class="col-xs-11 col-sm-4">
+      <%= form.label :bairro_id %>
+      <%= render :partial => 'pessoas_bairros_select2', :locals => {:form => form} %>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <%= form.label :cep %>
+      <%= form.text_field :cep, id: :pessoa_cep, class: 'form-control input-sm' %>
+    </div>
+  </div>
+
+  <div class="row top-row">
+    <div class="col-xs-12 col-sm-6">
+      <%= form.label :email %>
+      <%= form.text_field :email, id: :pessoa_email, class: 'form-control input-sm' %>
+      <%= form.error_span(:email) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-3">
+      <%= form.label :telefone_residencial %>
+      <%= form.text_field :telefone_residencial, id: :pessoa_telefone_residencial, class: 'form-control input-sm' %>
+    </div>
+
+    <div class="col-xs-12 col-sm-3">
+      <%= form.label :celular %>
+      <%= form.text_field :celular, id: :pessoa_celular, class: 'form-control input-sm' %>
+    </div>
+  </div>
+
+  <div class="row top-row">
+
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :estado_civil %>
+      <%= form.text_field :estado_civil, id: :pessoa_estado_civil, class: 'form-control input-sm' %>
+      <%= form.error_span(:estado_civil) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :numero_de_filhos %>
+      <%= form.number_field :numero_de_filhos, id: :pessoa_numero_de_filhos, class: 'form-control input-sm' %>
+      <%= form.error_span(:numero_de_filhos) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :numero_de_dependentes %>
+      <%= form.number_field :numero_de_dependentes, id: :pessoa_numero_de_dependentes, class: 'form-control input-sm' %>
+      <%= form.error_span(:numero_de_dependentes) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :sexo %>
+      <%= form.text_field :sexo, id: :pessoa_sexo, class: 'form-control input-sm' %>
+      <%= form.error_span(:sexo) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :cor %>
+      <%= form.text_field :cor, id: :pessoa_cor, class: 'form-control input-sm' %>
+      <%= form.error_span(:cor) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :renda_familiar %>
+      <%= form.text_field :renda_familiar, id: :pessoa_renda_familiar, class: 'form-control input-sm' %>
+    </div>
+  </div>
+
+  <div class="form-group top-row">
+    <%= form.label :observacoes %>
+    <%= form.text_area :observacoes, id: :pessoa_observacoes, class: 'form-control input-sm' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %>
+</div>

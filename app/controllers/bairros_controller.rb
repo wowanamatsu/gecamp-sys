@@ -5,9 +5,34 @@ class BairrosController < ApplicationController
   # GET /bairros
   # GET /bairros.json
   def index
-    @bairros = Bairro.select(:id, :nome, :cidade_id)
-              .order(:nome).page(params[:page] || 1).per(10)
-    render action: :index, layout: request.xhr? == nil
+    if params[:select2_trigger]
+      if params[:q]
+        @bairros = Bairro.select("bairros.id, bairros.nome")
+        .where("(TRANSLATE(lower(bairros.nome), 
+          'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
+          'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+          like '%#{params[:q].downcase}%' or lower(bairros.nome) 
+          like '%#{params[:q].downcase}%')")
+
+        @bairro = @bairros.page(params[:page] || 1).per(10)
+      end
+
+      respond_to do |format|
+        format.html
+        format.json {
+          render :json => {
+            :bairros => @bairro,
+            :total => @bairro.count,
+            :links => { :self => @bairro.current_page, :next => @bairro.next_page}
+          }
+        }
+      end
+
+    else
+      @bairros = Bairro.select(:id, :nome, :cidade_id)
+      .order(:nome).page(params[:page] || 1).per(10)
+      render action: :index, layout: request.xhr? == nil
+    end
   end
 
   # GET /bairros/1
@@ -70,4 +95,4 @@ class BairrosController < ApplicationController
     def bairro_params
       params.require(:bairro).permit(:nome, :cidade_id)
     end
-end
+  end

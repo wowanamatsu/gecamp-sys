@@ -1,0 +1,64 @@
+<select id="pessoa_bairros" class="form-control" name="pessoa[bairro_id]">
+  <option value="">Selecione</option>
+</select>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    function formatRepo (repo) {
+      if (repo.loading) return repo.text;
+
+      var markup = '<div class="clearfix">' +
+      '<div class="col-sm-1">' +
+      '</div>' +
+      '<div clas="col-sm-10">' +
+      '<div class="clearfix">' +
+      '<div class="col-sm-6">' + repo.nome + '</div>' +
+      '</div>';
+
+      if (repo.description) {
+        markup += '<div>' + repo.nome + '</div>';
+      }
+      markup += '</div></div>';
+      return markup;
+    }
+
+    function formatRepoSelection (repo) {
+      return repo.nome || repo.text;
+    }
+
+    $('#pessoa_bairros').select2({
+      ajax: {
+        url: "/bairros.json?select2_trigger=true",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return {
+            q: params.term, 
+            page: params.page
+          };
+        },
+        processResults: function (data, params) {
+
+          params.page = params.page || 1;
+          return {
+            results: data.bairros,
+            pagination: {
+              more: (params.page * 30) < data.total_count
+            }
+          };
+        },
+        // cache: true
+      },
+      escapeMarkup: function (markup) { return markup; }, 
+      minimumInputLength: 3,
+      templateResult: formatRepo, 
+      templateSelection: formatRepoSelection 
+    });
+
+    <% if action_name == 'edit' %>
+      var $option1 = $('<option selected><%= @pessoa.bairro.try(:nome) %></option>').val('<%= @pessoa.bairro_id %>');
+      $('#pessoa_bairros').append($option1).trigger('change');
+    <% end %>
+  });
+</script>

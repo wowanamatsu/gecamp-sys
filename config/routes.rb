@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pessoas
   resources :users
 
   devise_for :users, :skip => [:registrations, :sessions]
