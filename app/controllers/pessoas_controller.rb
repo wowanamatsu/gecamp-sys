@@ -25,7 +25,7 @@ class PessoasController < ApplicationController
   # POST /pessoas.json
   def create
     @pessoa = Pessoa.new(pessoa_params)
-    @pessoa.user_id = current_user.id
+    # @pessoa.user_id = current_user.id
 
     respond_to do |format|
       if @pessoa.save

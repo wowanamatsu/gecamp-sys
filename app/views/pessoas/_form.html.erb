@@ -1,6 +1,6 @@
 <div class="box-body">
   <%= form_with(model: pessoa, local: true) do |form| %>
-
+  <%= form.hidden_field :user_id, :value => current_user.id %>
   <div class="row top-row">
     <div class="col-xs-12 col-sm-4">
       <%= form.label :nome %>

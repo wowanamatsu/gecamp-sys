@@ -2,6 +2,8 @@ class User < ApplicationRecord
   enum role: [:normal, :convidado, :admin, :staff]
   enum status: [:inativo, :ativo]
 
+  has_many :pessoas
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable,  :registerable,

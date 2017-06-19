@@ -1,89 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <img class="profile-user-img img-responsive img-circle" src="/images/avatar.png" alt="User profile picture">
+        <h3 class="profile-username text-center"><%= @pessoa.nome %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Telefone <div class="pull-right"><%= @pessoa.telefone_residencial %></div></b>
+          </li>
+          <li class="list-group-item">
+            <b>Celular <div class="pull-right"><%= @pessoa.celular %></div></b>
+          </li>
+          <li class="list-group-item">
+            <b>Sexo <div class="pull-right"><%= @pessoa.sexo %></div></b>
+          </li>
+          <li class="list-group-item">
+            <b>Estado Cívil <div class="pull-right"><%= @pessoa.estado_civil %></div></b>
+          </li>
+        </ul>
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to pessoas_path, class: 'btn btn-success btn-block' do %>
+            <b>Voltar</b>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to 'Editar', edit_pessoa_path, class: 'btn btn-primary btn-block' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @pessoa.nome %>
-</p>
+  <div class="col-md-9">
 
-<p>
-  <strong>Endereco:</strong>
-  <%= @pessoa.endereco %>
-</p>
+    <div class="nav-tabs-custom">
 
-<p>
-  <strong>Cidade:</strong>
-  <%= @pessoa.cidade %>
-</p>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Outros dados</a></li>
+      </ul>
 
-<p>
-  <strong>Bairro:</strong>
-  <%= @pessoa.bairro %>
-</p>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <% if @pessoa.pessoa_id %>
+          <div>Indicado por: <b><%= @pessoa.indicado%></b></div>
+          <hr>
+          <% end %>
+          <div>Endereço: <b><%= @pessoa.endereco %></b></div>
+          <div>Bairro: <b><%= @pessoa.bairro.try(:nome) %></b></div>
+          <div>Cidade: <b><%= @pessoa.cidade.try(:nome) %></b></div>
+          <div>CEP: <b><%= @pessoa.cep %></b></div>
+          <hr>
+          <div>E-mail: <b><%= @pessoa.email %></b></div>
+          <hr>
+          <div>N. de Filhos: <b><%= @pessoa.numero_de_filhos %></b></div>
+          <div>N. de Dependentes: <b><%= @pessoa.numero_de_dependentes %></b></div>
+          <div>Renda Familiar: <b>R$ <%= @pessoa.renda_familiar %></b></div>
+          <hr>
+          <p>Observações</p>
+          <%= @pessoa.observacoes %>
+        </div>
+      </div>
 
-<p>
-  <strong>Cep:</strong>
-  <%= @pessoa.cep %>
-</p>
+    </div>
 
-<p>
-  <strong>Telefone residencial:</strong>
-  <%= @pessoa.telefone_residencial %>
-</p>
-
-<p>
-  <strong>Celular:</strong>
-  <%= @pessoa.celular %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @pessoa.email %>
-</p>
-
-<p>
-  <strong>Estado civil:</strong>
-  <%= @pessoa.estado_civil %>
-</p>
-
-<p>
-  <strong>Sexo:</strong>
-  <%= @pessoa.sexo %>
-</p>
-
-<p>
-  <strong>Cor:</strong>
-  <%= @pessoa.cor %>
-</p>
-
-<p>
-  <strong>Renda familiar:</strong>
-  <%= @pessoa.renda_familiar %>
-</p>
-
-<p>
-  <strong>Numero de filhos:</strong>
-  <%= @pessoa.numero_de_filhos %>
-</p>
-
-<p>
-  <strong>Numero de dependentes:</strong>
-  <%= @pessoa.numero_de_dependentes %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @pessoa.user %>
-</p>
-
-<p>
-  <strong>Pessoa:</strong>
-  <%= @pessoa.pessoa %>
-</p>
-
-<p>
-  <strong>Observacoes:</strong>
-  <%= @pessoa.observacoes %>
-</p>
-
-<%= link_to 'Edit', edit_pessoa_path(@pessoa) %> |
-<%= link_to 'Back', pessoas_path %>
+  </div>
+</div>
