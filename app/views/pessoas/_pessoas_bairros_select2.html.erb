@@ -2,6 +2,23 @@
   <option value="">Selecione</option>
 </select>
 
+<div id="pessoa_bairro_modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+        <h4 class="modal-title">Gecamp</h4>
+      </div>
+      <div class="modal-body">
+        <p>Você deve selecionar primeiro a Cidade</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
   $(document).ready(function(){
 
@@ -34,6 +51,7 @@
         delay: 250,
         data: function (params) {
           return {
+            cidade: $('#pessoa_cidades').val(),
             q: params.term, 
             page: params.page
           };
@@ -41,24 +59,33 @@
         processResults: function (data, params) {
 
           params.page = params.page || 1;
-          return {
-            results: data.bairros,
-            pagination: {
-              more: (params.page * 30) < data.total_count
-            }
-          };
+          if($('#pessoa_municipios').val() == ''){
+            $('#pessoa_bairro_modal').modal();
+          }else{
+            return {
+              results: data.bairros,
+              pagination: {
+                more: (params.page * 30) < data.total_count
+              }
+            };
+          }
         },
         // cache: true
       },
       escapeMarkup: function (markup) { return markup; }, 
-      minimumInputLength: 3,
+      minimumInputLength: 1,
       templateResult: formatRepo, 
       templateSelection: formatRepoSelection 
     });
 
     <% if action_name == 'edit' %>
-      var $option1 = $('<option selected><%= @pessoa.bairro.try(:nome) %></option>').val('<%= @pessoa.bairro_id %>');
-      $('#pessoa_bairros').append($option1).trigger('change');
+    var $option1 = $('<option selected><%= @pessoa.bairro.try(:nome) %></option>').val('<%= @pessoa.bairro_id %>');
+    $('#pessoa_bairros').append($option1).trigger('change');
+    <% elsif action_name == 'create' %>
+    <% unless form.object.bairro_id.nil? %>
+    var $option1 = $('<option selected><%= @pessoa.bairro.try(:nome) %></option>').val('<%= @pessoa.bairro_id %>');
+    $('#pessoa_bairros').append($option1).trigger('change');
+    <% end %>
     <% end %>
   });
 </script>

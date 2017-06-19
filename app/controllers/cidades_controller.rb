@@ -7,12 +7,13 @@ class CidadesController < ApplicationController
   def index
     if params[:select2_trigger]
       if params[:q]
+        municipio = "and cidades.municipio_id = '#{params[:municipio]}'" if params[:municipio] != ''
         @cidades = Cidade.select("cidades.id, cidades.nome")
         .where("(TRANSLATE(lower(cidades.nome), 
           'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
           'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
           like '%#{params[:q].downcase}%' or lower(cidades.nome) 
-          like '%#{params[:q].downcase}%')")
+          like '%#{params[:q].downcase}%') #{municipio}")
 
         @cidade = @cidades.page(params[:page] || 1).per(10)
       end

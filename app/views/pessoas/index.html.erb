@@ -10,10 +10,10 @@
 
     <div class="box-body no-padding">
 
-      <table>
+      <table class="table">
         <thead>
           <tr>
-          <th width="35%">Nome</th>
+          <th width="25%">Nome</th>
             <th width="25%">Endereco</th>
             <th width="15%">Telefone</th>
             <th width="15%">Celular</th>
@@ -29,9 +29,9 @@
             <td><%= pessoa.telefone_residencial %></td>
             <td><%= pessoa.celular %></td>
             <td>
-              <%= link_to 'Show', pessoa %>
-              <%= link_to 'Edit', edit_pessoa_path(pessoa) %>
-              <%= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Show', pessoa, class: 'btn btn-xs btn-success' %>
+              <%= link_to 'Edit', edit_pessoa_path(pessoa), class: 'btn btn-xs btn-warning' %>
+              <%= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
             </td>
           </tr>
           <% end %>

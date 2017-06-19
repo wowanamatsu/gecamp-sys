@@ -8,7 +8,7 @@ class Pessoa < ApplicationRecord
 
   validates_presence_of :nome, :endereco, :cidade_id, message: 'deve ser preenchido.'
   validates_presence_of :sexo, :cor, :estado_id, :municipio_id, message: 'deve ser preenchido.'
-  validates_presence_of :estado_civil, message: 'deve ser preenchido.'
+  validates_presence_of :estado_civil, :bairro_id, message: 'deve ser preenchido.'
 
   def indicado
     Pessoa.select(:nome).where(:id => self.pessoa_id)[0].try(:nome)

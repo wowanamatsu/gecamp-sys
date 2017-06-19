@@ -3,17 +3,16 @@ class MunicipiosController < ApplicationController
   load_and_authorize_resource
 
   def index
-
     if params[:select2_trigger]
       if params[:q]
+        estado = "and municipios.estado_id = '#{params[:estado]}'" if params[:estado] != ''
         @municipios = Municipio.select("municipios.id, municipios.nome")
         .where("(TRANSLATE(lower(municipios.nome), 
           'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
           'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
           like '%#{params[:q].downcase}%' or lower(municipios.nome) 
-          like '%#{params[:q].downcase}%')")
+          like '%#{params[:q].downcase}%') #{estado}")
         @municipio = @municipios.page(params[:page] || 1).per(10)
-
       end
 
       respond_to do |format|  

@@ -43,6 +43,7 @@
     <div class="col-xs-11 col-sm-3">
       <%= form.label :bairro_id %>
       <%= render :partial => 'pessoas_bairros_select2', :locals => {:form => form} %>
+      <%= form.error_span(:bairro_id) %>
     </div>
   </div>
 
@@ -73,7 +74,12 @@
 
     <div class="col-xs-12 col-sm-2">
       <%= form.label :estado_civil %>
-      <%= form.text_field :estado_civil, id: :pessoa_estado_civil, class: 'form-control input-sm' %>
+      <%#= form.text_field :estado_civil, id: :pessoa_estado_civil, class: 'form-control input-sm' %>
+      <%= form.select :estado_civil, options_for_select([
+          ['Solteiro(a)', 'Solteiro(a)'], 
+          ['Casado(a)', 'Casado(a)'], 
+          ['Outros', 'Outros']
+        ], @pessoa.estado_civil), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
       <%= form.error_span(:estado_civil) %>
     </div>
 
@@ -91,29 +97,38 @@
 
     <div class="col-xs-12 col-sm-2">
       <%= form.label :sexo %>
-      <%= form.text_field :sexo, id: :pessoa_sexo, class: 'form-control input-sm' %>
+      <%= form.select :sexo, options_for_select([
+          ['Feminino', 'Feminino'], 
+          ['Masculino', 'Masculino']
+        ], @pessoa.sexo), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
       <%= form.error_span(:sexo) %>
     </div>
 
     <div class="col-xs-12 col-sm-2">
       <%= form.label :cor %>
-      <%= form.text_field :cor, id: :pessoa_cor, class: 'form-control input-sm' %>
+      <%= form.select :cor, options_for_select([
+          ['Parda','Parda'], 
+          ['Preta','Preta'], 
+          ['Branca','Branca'], 
+          ['Não declarada','Não declarada']
+        ], @pessoa.cor), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
       <%= form.error_span(:cor) %>
     </div>
 
     <div class="col-xs-12 col-sm-2">
       <%= form.label :renda_familiar %>
-      <%= form.text_field :renda_familiar, id: :pessoa_renda_familiar, class: 'form-control input-sm' %>
+      <%= form.text_field :renda_familiar, id: :pessoa_renda_familiar, placeholder: '0.0', class: 'form-control input-sm' %>
     </div>
   </div>
 
   <div class="form-group top-row">
     <%= form.label :observacoes %>
-    <%= form.text_area :observacoes, id: :pessoa_observacoes, class: 'form-control input-sm' %>
+    <%= form.text_area :observacoes, id: :pessoa_observacoes, placeholder: 'Obervações', class: 'form-control input-sm' %>
   </div>
 
   <div class="box-footer">
     <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', pessoas_path, class: 'btn btn-danger' %>
   </div>
   <% end %>
 </div>
