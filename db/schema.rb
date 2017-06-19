@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618143802) do
+ActiveRecord::Schema.define(version: 20170619092119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,8 +66,13 @@ ActiveRecord::Schema.define(version: 20170618143802) do
     t.text "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "estado_id"
+    t.bigint "municipio_id"
+    t.date "data_nascimento"
     t.index ["bairro_id"], name: "index_pessoas_on_bairro_id"
     t.index ["cidade_id"], name: "index_pessoas_on_cidade_id"
+    t.index ["estado_id"], name: "index_pessoas_on_estado_id"
+    t.index ["municipio_id"], name: "index_pessoas_on_municipio_id"
     t.index ["pessoa_id"], name: "index_pessoas_on_pessoa_id"
     t.index ["user_id"], name: "index_pessoas_on_user_id"
   end
@@ -97,6 +102,8 @@ ActiveRecord::Schema.define(version: 20170618143802) do
   add_foreign_key "municipios", "estados"
   add_foreign_key "pessoas", "bairros"
   add_foreign_key "pessoas", "cidades"
+  add_foreign_key "pessoas", "estados"
+  add_foreign_key "pessoas", "municipios"
   add_foreign_key "pessoas", "pessoas"
   add_foreign_key "pessoas", "users"
 end

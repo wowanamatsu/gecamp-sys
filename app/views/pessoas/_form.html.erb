@@ -1,5 +1,5 @@
 <div class="box-body">
-  <%= form_with(model: pessoa, local: true) do |form| %>
+  <%= form_with(model: pessoa, local: true, html: {:id => 'teste'}) do |form| %>
   <%= form.hidden_field :user_id, :value => current_user.id %>
   <div class="row top-row">
     <div class="col-xs-12 col-sm-4">
@@ -22,24 +22,37 @@
   </div>
 
   <div class="row top-row">
-    <div class="col-xs-11 col-sm-4">
+    <div class="col-xs-11 col-sm-3">
+      <%= form.label :estado_id %>
+      <%= render :partial => 'pessoas_estados_select2', :locals => {:form => form} %>
+      <%= form.error_span(:estado_id) %>
+    </div>
+
+    <div class="col-xs-11 col-sm-3">
+      <%= form.label :municipio_id %>
+      <%= render :partial => 'pessoas_municipios_select2', :locals => {:form => form} %>
+      <%= form.error_span(:municipio_id) %>
+    </div>
+
+    <div class="col-xs-11 col-sm-3">
       <%= form.label :cidade_id %>
       <%= render :partial => 'pessoas_cidades_select2', :locals => {:form => form} %>
+      <%= form.error_span(:cidade_id) %>
     </div>
 
-    <div class="col-xs-11 col-sm-4">
+    <div class="col-xs-11 col-sm-3">
       <%= form.label :bairro_id %>
       <%= render :partial => 'pessoas_bairros_select2', :locals => {:form => form} %>
-    </div>
-
-    <div class="col-xs-12 col-sm-4">
-      <%= form.label :cep %>
-      <%= form.text_field :cep, id: :pessoa_cep, class: 'form-control input-sm' %>
     </div>
   </div>
 
   <div class="row top-row">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :cep %>
+      <%= form.text_field :cep, id: :pessoa_cep, class: 'form-control input-sm' %>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
       <%= form.label :email %>
       <%= form.text_field :email, id: :pessoa_email, class: 'form-control input-sm' %>
       <%= form.error_span(:email) %>
@@ -99,8 +112,8 @@
     <%= form.text_area :observacoes, id: :pessoa_observacoes, class: 'form-control input-sm' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="box-footer">
+    <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
   </div>
   <% end %>
 </div>

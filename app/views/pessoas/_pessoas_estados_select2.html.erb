@@ -1,4 +1,4 @@
-<select id="pessoa_cidades" class="form-control" name="pessoa[cidade_id]">
+<select id="pessoa_estados" class="form-control" name="pessoa[estado_id]">
   <option value="">Selecione</option>
 </select>
 
@@ -9,10 +9,6 @@
       if (repo.loading) return repo.text;
 
       var markup = '<div class="clearfix">' +
-      '<div class="col-sm-1">' +
-      '</div>' +
-      '<div clas="col-sm-10">' +
-      '<div class="clearfix">' +
       '<div class="col-sm-6">' + repo.nome + '</div>' +
       '</div>';
 
@@ -27,9 +23,9 @@
       return repo.nome || repo.text;
     }
 
-    $('#pessoa_cidades').select2({
+    $('#pessoa_estados').select2({
       ajax: {
-        url: "/cidades.json?select2_trigger=true",
+        url: "/estados.json?select2_trigger=true",
         dataType: 'json',
         delay: 250,
         data: function (params) {
@@ -42,7 +38,7 @@
 
           params.page = params.page || 1;
           return {
-            results: data.cidades,
+            results: data.estados,
             pagination: {
               more: (params.page * 30) < data.total_count
             }
@@ -57,12 +53,12 @@
     });
 
     <% if action_name == 'edit' %>
-    var $option1 = $('<option selected><%= @pessoa.cidade.try(:nome) %></option>').val('<%= @pessoa.cidade_id %>');
-    $('#pessoa_cidades').append($option1).trigger('change');
+    var $option1 = $('<option selected><%= @pessoa.estado.try(:nome) %></option>').val('<%= @pessoa.estado_id %>');
+    $('#pessoa_estados').append($option1).trigger('change');
     <% elsif action_name == 'create' %>
-    <% unless form.object.cidade_id.nil? %>
-    var $option1 = $('<option selected><%= @pessoa.cidade.try(:nome) %></option>').val('<%= @pessoa.cidade_id %>');
-    $('#pessoa_cidades').append($option1).trigger('change');
+    <% unless form.object.estado_id.nil? %>
+    var $option1 = $('<option selected><%= @pessoa.estado.try(:nome) %></option>').val('<%= @pessoa.estado_id %>');
+    $('#pessoa_estados').append($option1).trigger('change');
     <% end %>
     <% end %>
   });

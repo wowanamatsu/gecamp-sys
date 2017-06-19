@@ -1,4 +1,4 @@
-<select id="pessoa_cidades" class="form-control" name="pessoa[cidade_id]">
+<select id="pessoa_municipios" class="form-control" name="pessoa[municipio_id]">
   <option value="">Selecione</option>
 </select>
 
@@ -9,10 +9,6 @@
       if (repo.loading) return repo.text;
 
       var markup = '<div class="clearfix">' +
-      '<div class="col-sm-1">' +
-      '</div>' +
-      '<div clas="col-sm-10">' +
-      '<div class="clearfix">' +
       '<div class="col-sm-6">' + repo.nome + '</div>' +
       '</div>';
 
@@ -27,42 +23,46 @@
       return repo.nome || repo.text;
     }
 
-    $('#pessoa_cidades').select2({
+    $('#pessoa_municipios').select2({
       ajax: {
-        url: "/cidades.json?select2_trigger=true",
+        url: "/municipios.json?select2_trigger=true",
         dataType: 'json',
         delay: 250,
         data: function (params) {
           return {
+            estado: $('#pessoa_estados').val(),
             q: params.term, 
             page: params.page
           };
         },
         processResults: function (data, params) {
-
           params.page = params.page || 1;
-          return {
-            results: data.cidades,
-            pagination: {
-              more: (params.page * 30) < data.total_count
-            }
-          };
+          if($('#pessoa_estados').val() == ''){
+            alert()
+          }else{
+            return {
+              results: data.municipios,
+              pagination: {
+                more: (params.page * 30) < data.total_count
+              }
+            };
+          }
         },
-        // cache: true
+        cache: true
       },
       escapeMarkup: function (markup) { return markup; }, 
-      minimumInputLength: 3,
+      minimumInputLength: 1,
       templateResult: formatRepo, 
       templateSelection: formatRepoSelection 
     });
 
     <% if action_name == 'edit' %>
-    var $option1 = $('<option selected><%= @pessoa.cidade.try(:nome) %></option>').val('<%= @pessoa.cidade_id %>');
-    $('#pessoa_cidades').append($option1).trigger('change');
+    var $option1 = $('<option selected><%= @pessoa.municipio.try(:nome) %></option>').val('<%= @pessoa.municipio_id %>');
+    $('#pessoa_municipios').append($option1).trigger('change');
     <% elsif action_name == 'create' %>
-    <% unless form.object.cidade_id.nil? %>
-    var $option1 = $('<option selected><%= @pessoa.cidade.try(:nome) %></option>').val('<%= @pessoa.cidade_id %>');
-    $('#pessoa_cidades').append($option1).trigger('change');
+    <% unless form.object.municipio_id.nil? %>
+    var $option1 = $('<option selected><%= @pessoa.municipio.try(:nome) %></option>').val('<%= @pessoa.municipio_id %>');
+    $('#pessoa_municipios').append($option1).trigger('change');
     <% end %>
     <% end %>
   });

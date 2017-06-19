@@ -2,7 +2,7 @@ class User < ApplicationRecord
   enum role: [:normal, :convidado, :admin, :staff]
   enum status: [:inativo, :ativo]
 
-  has_many :pessoas
+  has_many :pessoas, dependent: :restrict_with_error
 
 
   # Include default devise modules. Others available are:

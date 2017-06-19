@@ -5,9 +5,34 @@ class EstadosController < ApplicationController
   # GET /estados
   # GET /estados.json
   def index
-    @estados = Estado.select(:id, :nome, :sigla)
-    .order(nome: :desc).page(params[:page] || 1).per(8)
-    render action: :index, layout: request.xhr? == nil
+    if params[:select2_trigger]
+      if params[:q]
+        @estados = Estado.select("estados.id, estados.nome")
+        .where("(TRANSLATE(lower(estados.nome), 
+          'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
+          'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+          like '%#{params[:q].downcase}%' or lower(estados.nome) 
+          like '%#{params[:q].downcase}%')")
+
+        @estado = @estados.page(params[:page] || 1).per(10)
+      end
+
+      respond_to do |format|
+        format.html
+        format.json {
+          render :json => {
+            :estados => @estado,
+            :total => @estado.count,
+            :links => { :self => @estado.current_page, :next => @estado.next_page}
+          }
+        }
+      end
+
+    else
+      @estados = Estado.select(:id, :nome, :sigla)
+      .order(nome: :desc).page(params[:page] || 1).per(8)
+      render action: :index, layout: request.xhr? == nil
+    end
   end
 
   # GET /estados/1

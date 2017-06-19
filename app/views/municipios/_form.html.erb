@@ -11,7 +11,7 @@
   <div class="form-group">
     <%= form.label :estado_id %>
     <%= form.error_span(:estado_id) %>
-    <%= form.collection_select :estado_id, Estado.order(:nome), :id, :nome, {prompt: 'Selecione'}, {class: 'form-control'} %>
+    <%= render :partial => 'municipios_estados_select2', locals: {:form => form} %>
   </div>
 
   <div class="box-footer">

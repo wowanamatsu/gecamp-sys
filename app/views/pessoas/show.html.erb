@@ -47,12 +47,15 @@
           <hr>
           <% end %>
           <div>Endereço: <b><%= @pessoa.endereco %></b></div>
-          <div>Bairro: <b><%= @pessoa.bairro.try(:nome) %></b></div>
+          <div>Estado: <b><%= @pessoa.estado.try(:nome) %></b></div>
+          <div>Município: <b><%= @pessoa.municipio.try(:nome) %></b></div>
           <div>Cidade: <b><%= @pessoa.cidade.try(:nome) %></b></div>
+          <div>Bairro: <b><%= @pessoa.bairro.try(:nome) %></b></div>
           <div>CEP: <b><%= @pessoa.cep %></b></div>
           <hr>
           <div>E-mail: <b><%= @pessoa.email %></b></div>
           <hr>
+          <div>Data Nasc.: <b><%= @pessoa.data_nascimento %></b></div>
           <div>N. de Filhos: <b><%= @pessoa.numero_de_filhos %></b></div>
           <div>N. de Dependentes: <b><%= @pessoa.numero_de_dependentes %></b></div>
           <div>Renda Familiar: <b>R$ <%= @pessoa.renda_familiar %></b></div>
