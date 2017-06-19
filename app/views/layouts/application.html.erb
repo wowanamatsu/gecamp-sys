@@ -97,9 +97,9 @@
         <li class="header">HEADER</li>
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
         <li>
-        <%= link_to pessoas_path do %>
+          <%= link_to pessoas_path do %>
           <i class="fa fa-link"></i> <span>Cadastrar Pessoa</span>
-        <% end %>
+          <% end %>
         </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Configurações</span>
@@ -155,6 +155,25 @@
     </footer>
     <div class="control-sidebar-bg"></div>
   </div>
+  <script type="text/javascript">
+    $(".telefone").mask("(999) 9999-9999?9");
+    $(".cep").mask("99.999-999");
+    $(".cpf").mask("999.999.999-99")
+    $('select').addClass('form-control');
+
+    $( ":text, select, textarea" ).on( "mouseover", function() {
+      $( this ).css( "background", "#ECF0F5" ).css("color","navy");
+    });
+
+    $( ":text, select, textarea" ).on( "mouseout", function() {
+      $( this ).css( "background", "#fff" ).css("color","#333");
+    });
+
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+
+  </script>
 </body>
 
 <% else %>

@@ -15,3 +15,4 @@
 //= require estados
 //= require rails-ujs
 //= require notify.min
+//= require validacoes

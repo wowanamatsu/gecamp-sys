@@ -10,13 +10,13 @@
 
     <div class="col-xs-12 col-sm-4">
       <%= form.label :endereco %>
-      <%= form.text_field :endereco, id: :pessoa_endereco, class: 'form-control input-sm' %>
+      <%= form.text_field :endereco, id: :pessoa_endereco, :placeholder => 'Endereço', class: 'form-control input-sm' %>
       <%= form.error_span(:endereco) %>
     </div>
 
     <div class="col-xs-12 col-sm-4">
       <%= form.label :pessoa_id, 'Indicado por' %>
-      <%= form.text_field :pessoa_id, id: :pessoa_pessoa_id, class: 'form-control input-sm' %>
+      <%= render :partial => 'indicado_select2', :locals => {:form => form} %>
     </div>
 
   </div>
@@ -50,23 +50,23 @@
   <div class="row top-row">
     <div class="col-xs-12 col-sm-2">
       <%= form.label :cep %>
-      <%= form.text_field :cep, id: :pessoa_cep, class: 'form-control input-sm' %>
+      <%= form.text_field :cep, id: :pessoa_cep, placeholder: '00.000-000', class: 'form-control input-sm cep' %>
     </div>
 
     <div class="col-xs-12 col-sm-4">
       <%= form.label :email %>
-      <%= form.text_field :email, id: :pessoa_email, class: 'form-control input-sm' %>
+      <%= form.text_field :email, id: :pessoa_email, placeholder: 'E-mail', class: 'form-control input-sm' %>
       <%= form.error_span(:email) %>
     </div>
 
     <div class="col-xs-12 col-sm-3">
       <%= form.label :telefone_residencial %>
-      <%= form.text_field :telefone_residencial, id: :pessoa_telefone_residencial, class: 'form-control input-sm' %>
+      <%= form.text_field :telefone_residencial, id: :pessoa_telefone_residencial, placeholder: 'Telefone', class: 'form-control input-sm telefone' %>
     </div>
 
     <div class="col-xs-12 col-sm-3">
       <%= form.label :celular %>
-      <%= form.text_field :celular, id: :pessoa_celular, class: 'form-control input-sm' %>
+      <%= form.text_field :celular, id: :pessoa_celular, placeholder: 'Celular', class: 'form-control input-sm telefone' %>
     </div>
   </div>
 
