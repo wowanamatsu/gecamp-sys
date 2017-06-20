@@ -7,7 +7,10 @@ class CidadesController < ApplicationController
   def index
     if params[:select2_trigger]
       if params[:q]
-        municipio = "and cidades.municipio_id = '#{params[:municipio]}'" if params[:municipio] != ''
+        municipio = nil
+        if params[:municipio].to_i > 0
+          municipio = "and cidades.municipio_id = '#{params[:municipio]}'"
+        end
         @cidades = Cidade.select("cidades.id, cidades.nome")
         .where("(TRANSLATE(lower(cidades.nome), 
           'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
