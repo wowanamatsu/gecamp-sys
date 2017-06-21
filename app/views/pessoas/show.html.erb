@@ -46,6 +46,9 @@
           <div>Indicado por: <b><%= @pessoa.indicado%></b></div>
           <hr>
           <% end %>
+          <div>Seguimento: <b><%= @pessoa.seguimento.try(:nome) %></b></div>
+          <div>Profissão: <b><%= @pessoa.profissao.try(:nome) %></b></div>
+          <hr>
           <div>Endereço: <b><%= @pessoa.endereco %></b></div>
           <div>Estado: <b><%= @pessoa.estado.try(:nome) %></b></div>
           <div>Município: <b><%= @pessoa.municipio.try(:nome) %></b></div>

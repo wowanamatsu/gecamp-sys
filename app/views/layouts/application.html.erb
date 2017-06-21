@@ -164,8 +164,12 @@
   <script type="text/javascript">
     $(".telefone").mask("(999) 9999-9999?9");
     $(".cep").mask("99.999-999");
-    $(".cpf").mask("999.999.999-99")
+    $(".cpf").mask("999.999.999-99");
+    $('.datepicker').datepicker({
+      dateFormat: "dd-mm-yy"
+    });
     $('select').addClass('form-control');
+
 
     $( ":text, select, textarea" ).on( "mouseover", function() {
       $( this ).css( "background", "#ECF0F5" ).css("color","navy");

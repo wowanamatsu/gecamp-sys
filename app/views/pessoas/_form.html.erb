@@ -22,19 +22,25 @@
 
   <div class="row top-row">
     <div class="col-xs-12 col-sm-4">
-      <%= form.label :endereco %>
+      <%= form.label :endereco, 'Endereço' %>
       <%= form.text_field :endereco, id: :pessoa_endereco, :placeholder => 'Endereço', class: 'form-control input-sm' %>
       <%= form.error_span(:endereco) %>
     </div>
 
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-2">
+      <%= form.label :data_nascimento %>
+      <%= form.text_field :data_nascimento, placeholder: 'Data nascimento', class: 'form-control datepicker' %>
+      <%= form.error_span(:data_nascimento) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-3">
       <%= form.label :seguimento_id %>
       <%= form.collection_select :seguimento_id, seguimentos, :id, :nome, prompt: 'Selecione...', class: 'form-control' %>
       <%= form.error_span(:seguimento_id) %>
     </div>
 
-    <div class="col-xs-12 col-sm-4">
-      <%= form.label :profissao_id %>
+    <div class="col-xs-12 col-sm-3">
+      <%= form.label :profissao_id, 'Profissão' %>
       <%= form.collection_select :profissao_id, profissoes, :id, :nome, prompt: 'Selecione...', class: 'form-control' %>
       <%= form.error_span(:profissao_id) %>
     </div>
@@ -68,7 +74,7 @@
 
   <div class="row top-row">
     <div class="col-xs-12 col-sm-2">
-      <%= form.label :cep %>
+      <%= form.label :cep, 'CEP' %>
       <%= form.text_field :cep, id: :pessoa_cep, placeholder: '00.000-000', class: 'form-control input-sm cep' %>
     </div>
 
@@ -101,13 +107,13 @@
       </div>
 
       <div class="col-xs-12 col-sm-2">
-        <%= form.label :numero_de_filhos %>
+        <%= form.label :numero_de_filhos, 'Número de filhos' %>
         <%= form.number_field :numero_de_filhos, id: :pessoa_numero_de_filhos, class: 'form-control input-sm' %>
         <%= form.error_span(:numero_de_filhos) %>
       </div>
 
       <div class="col-xs-12 col-sm-2">
-        <%= form.label :numero_de_dependentes %>
+        <%= form.label :numero_de_dependentes, 'Número de dependentes' %>
         <%= form.number_field :numero_de_dependentes, id: :pessoa_numero_de_dependentes, class: 'form-control input-sm' %>
         <%= form.error_span(:numero_de_dependentes) %>
       </div>
@@ -139,7 +145,7 @@
         </div>
 
         <div class="form-group top-row">
-          <%= form.label :observacoes %>
+          <%= form.label :observacoes, 'Observações' %>
           <%= form.text_area :observacoes, id: :pessoa_observacoes, placeholder: 'Obervações', class: 'form-control input-sm' %>
         </div>
 

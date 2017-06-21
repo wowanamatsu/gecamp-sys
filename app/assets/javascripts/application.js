@@ -16,3 +16,4 @@
 //= require rails-ujs
 //= require notify.min
 //= require validacoes
+//= require jquery-ui
