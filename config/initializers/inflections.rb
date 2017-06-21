@@ -21,4 +21,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'cidade', 'cidades'
   inflect.irregular 'bairro', 'bairros'
   inflect.irregular 'grupo', 'grupos'
+  inflect.irregular 'profissao', 'profissoes'
 end

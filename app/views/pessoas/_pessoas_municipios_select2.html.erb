@@ -73,7 +73,7 @@
       templateSelection: formatRepoSelection 
     });
 
-    <% if action_name == 'edit' %>
+    <% if action_name == 'edit' or 'update' %>
     var $option1 = $('<option selected><%= @pessoa.municipio.try(:nome) %></option>').val('<%= @pessoa.municipio_id %>');
     $('#pessoa_municipios').append($option1).trigger('change');
     <% elsif action_name == 'create' %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619092119) do
+ActiveRecord::Schema.define(version: 20170621000812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,12 +69,29 @@ ActiveRecord::Schema.define(version: 20170619092119) do
     t.bigint "estado_id"
     t.bigint "municipio_id"
     t.date "data_nascimento"
+    t.string "nome_social"
+    t.bigint "seguimento_id"
+    t.bigint "profissao_id"
     t.index ["bairro_id"], name: "index_pessoas_on_bairro_id"
     t.index ["cidade_id"], name: "index_pessoas_on_cidade_id"
     t.index ["estado_id"], name: "index_pessoas_on_estado_id"
     t.index ["municipio_id"], name: "index_pessoas_on_municipio_id"
     t.index ["pessoa_id"], name: "index_pessoas_on_pessoa_id"
+    t.index ["profissao_id"], name: "index_pessoas_on_profissao_id"
+    t.index ["seguimento_id"], name: "index_pessoas_on_seguimento_id"
     t.index ["user_id"], name: "index_pessoas_on_user_id"
+  end
+
+  create_table "profissoes", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "seguimentos", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,5 +122,7 @@ ActiveRecord::Schema.define(version: 20170619092119) do
   add_foreign_key "pessoas", "estados"
   add_foreign_key "pessoas", "municipios"
   add_foreign_key "pessoas", "pessoas"
+  add_foreign_key "pessoas", "profissoes"
+  add_foreign_key "pessoas", "seguimentos"
   add_foreign_key "pessoas", "users"
 end

@@ -1,0 +1,22 @@
+<%= form_with(model: profissao, local: true) do |form| %>
+  <% if profissao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profissao.errors.count, "error") %> prohibited this profissao from being saved:</h2>
+
+      <ul>
+      <% profissao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :profissao_nome %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -52,7 +52,7 @@
       templateSelection: formatRepoSelection 
     });
 
-    <% if action_name == 'edit' %>
+    <% if action_name == 'edit' or 'update' %>
     var $option1 = $('<option selected><%= @pessoa.indicado %></option>').val('<%= @pessoa.pessoa_id %>');
     $('#pessoa_pessoa').append($option1).trigger('change');
     <% elsif action_name == 'create' %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :profissoes
+  resources :seguimentos
   resources :pessoas
   resources :users
 

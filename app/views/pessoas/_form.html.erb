@@ -9,16 +9,35 @@
     </div>
 
     <div class="col-xs-12 col-sm-4">
-      <%= form.label :endereco %>
-      <%= form.text_field :endereco, id: :pessoa_endereco, :placeholder => 'Endereço', class: 'form-control input-sm' %>
-      <%= form.error_span(:endereco) %>
+      <%= form.label :nome_social %>
+      <%= form.text_field :nome_social, id: :pessoa_nome_social, :placeholder => "Nome Social", class: 'form-control input-sm' %>
+      <%= form.error_span(:nome_social) %>
     </div>
 
     <div class="col-xs-12 col-sm-4">
       <%= form.label :pessoa_id, 'Indicado por' %>
       <%= render :partial => 'indicado_select2', :locals => {:form => form} %>
     </div>
+  </div>
 
+  <div class="row top-row">
+    <div class="col-xs-12 col-sm-4">
+      <%= form.label :endereco %>
+      <%= form.text_field :endereco, id: :pessoa_endereco, :placeholder => 'Endereço', class: 'form-control input-sm' %>
+      <%= form.error_span(:endereco) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <%= form.label :seguimento_id %>
+      <%= form.collection_select :seguimento_id, seguimentos, :id, :nome, prompt: 'Selecione...', class: 'form-control' %>
+      <%= form.error_span(:seguimento_id) %>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <%= form.label :profissao_id %>
+      <%= form.collection_select :profissao_id, profissoes, :id, :nome, prompt: 'Selecione...', class: 'form-control' %>
+      <%= form.error_span(:profissao_id) %>
+    </div>
   </div>
 
   <div class="row top-row">
@@ -71,64 +90,62 @@
   </div>
 
   <div class="row top-row">
-
     <div class="col-xs-12 col-sm-2">
       <%= form.label :estado_civil %>
-      <%#= form.text_field :estado_civil, id: :pessoa_estado_civil, class: 'form-control input-sm' %>
       <%= form.select :estado_civil, options_for_select([
-          ['Solteiro(a)', 'Solteiro(a)'], 
-          ['Casado(a)', 'Casado(a)'], 
-          ['Outros', 'Outros']
+        ['Solteiro(a)', 'Solteiro(a)'], 
+        ['Casado(a)', 'Casado(a)'], 
+        ['Outros', 'Outros']
         ], @pessoa.estado_civil), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
-      <%= form.error_span(:estado_civil) %>
-    </div>
+        <%= form.error_span(:estado_civil) %>
+      </div>
 
-    <div class="col-xs-12 col-sm-2">
-      <%= form.label :numero_de_filhos %>
-      <%= form.number_field :numero_de_filhos, id: :pessoa_numero_de_filhos, class: 'form-control input-sm' %>
-      <%= form.error_span(:numero_de_filhos) %>
-    </div>
+      <div class="col-xs-12 col-sm-2">
+        <%= form.label :numero_de_filhos %>
+        <%= form.number_field :numero_de_filhos, id: :pessoa_numero_de_filhos, class: 'form-control input-sm' %>
+        <%= form.error_span(:numero_de_filhos) %>
+      </div>
 
-    <div class="col-xs-12 col-sm-2">
-      <%= form.label :numero_de_dependentes %>
-      <%= form.number_field :numero_de_dependentes, id: :pessoa_numero_de_dependentes, class: 'form-control input-sm' %>
-      <%= form.error_span(:numero_de_dependentes) %>
-    </div>
+      <div class="col-xs-12 col-sm-2">
+        <%= form.label :numero_de_dependentes %>
+        <%= form.number_field :numero_de_dependentes, id: :pessoa_numero_de_dependentes, class: 'form-control input-sm' %>
+        <%= form.error_span(:numero_de_dependentes) %>
+      </div>
 
-    <div class="col-xs-12 col-sm-2">
-      <%= form.label :sexo %>
-      <%= form.select :sexo, options_for_select([
+      <div class="col-xs-12 col-sm-2">
+        <%= form.label :sexo %>
+        <%= form.select :sexo, options_for_select([
           ['Feminino', 'Feminino'], 
           ['Masculino', 'Masculino']
-        ], @pessoa.sexo), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
-      <%= form.error_span(:sexo) %>
-    </div>
+          ], @pessoa.sexo), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
+          <%= form.error_span(:sexo) %>
+        </div>
 
-    <div class="col-xs-12 col-sm-2">
-      <%= form.label :cor %>
-      <%= form.select :cor, options_for_select([
-          ['Parda','Parda'], 
-          ['Preta','Preta'], 
-          ['Branca','Branca'], 
-          ['Não declarada','Não declarada']
-        ], @pessoa.cor), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
-      <%= form.error_span(:cor) %>
-    </div>
+        <div class="col-xs-12 col-sm-2">
+          <%= form.label :cor %>
+          <%= form.select :cor, options_for_select([
+            ['Parda','Parda'], 
+            ['Preta','Preta'], 
+            ['Branca','Branca'], 
+            ['Não declarada','Não declarada']
+            ], @pessoa.cor), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
+            <%= form.error_span(:cor) %>
+          </div>
 
-    <div class="col-xs-12 col-sm-2">
-      <%= form.label :renda_familiar %>
-      <%= form.text_field :renda_familiar, id: :pessoa_renda_familiar, placeholder: '0.0', class: 'form-control input-sm' %>
-    </div>
-  </div>
+          <div class="col-xs-12 col-sm-2">
+            <%= form.label :renda_familiar %>
+            <%= form.text_field :renda_familiar, id: :pessoa_renda_familiar, placeholder: '0.0', class: 'form-control input-sm' %>
+          </div>
+        </div>
 
-  <div class="form-group top-row">
-    <%= form.label :observacoes %>
-    <%= form.text_area :observacoes, id: :pessoa_observacoes, placeholder: 'Obervações', class: 'form-control input-sm' %>
-  </div>
+        <div class="form-group top-row">
+          <%= form.label :observacoes %>
+          <%= form.text_area :observacoes, id: :pessoa_observacoes, placeholder: 'Obervações', class: 'form-control input-sm' %>
+        </div>
 
-  <div class="box-footer">
-    <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
-    <%= link_to 'Cancelar', pessoas_path, class: 'btn btn-danger' %>
-  </div>
-  <% end %>
-</div>
+        <div class="box-footer">
+          <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
+          <%= link_to 'Cancelar', pessoas_path, class: 'btn btn-danger' %>
+        </div>
+        <% end %>
+      </div>
