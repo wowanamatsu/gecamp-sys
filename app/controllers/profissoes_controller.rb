@@ -54,10 +54,11 @@ class ProfissoesController < ApplicationController
   # DELETE /profissoes/1
   # DELETE /profissoes/1.json
   def destroy
-    @profissao.destroy
-    respond_to do |format|
+    if not @profissao.pessoas.empty?
+      redirect_to profissoes_path, alert: "Não é possível deletar a profissao (#{@profissao.nome}). Existem pessoas ligadas a ela."
+    else
+      @profissao.destroy
       format.html { redirect_to profissoes_url, notice: 'Profissao was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -71,4 +72,4 @@ class ProfissoesController < ApplicationController
     def profissao_params
       params.require(:profissao).permit(:nome)
     end
-end
+  end

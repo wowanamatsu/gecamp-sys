@@ -54,10 +54,11 @@ class SeguimentosController < ApplicationController
   # DELETE /seguimentos/1
   # DELETE /seguimentos/1.json
   def destroy
-    @seguimento.destroy
-    respond_to do |format|
+    if not @seguimento.pessoas.empty?
+      redirect_to seguimentos_path, alert: "Não é possível deletar o seguimento (#{@seguimento.nome}). Existem pessoas ligadas a ele."
+    else
+      @seguimento.destroy
       format.html { redirect_to seguimentos_url, notice: 'Seguimento was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -71,4 +72,4 @@ class SeguimentosController < ApplicationController
     def seguimento_params
       params.require(:seguimento).permit(:nome)
     end
-end
+  end
