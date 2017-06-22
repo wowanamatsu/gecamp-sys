@@ -28,11 +28,9 @@ class ProfissoesController < ApplicationController
 
     respond_to do |format|
       if @profissao.save
-        format.html { redirect_to @profissao, notice: 'Profissao was successfully created.' }
-        format.json { render :show, status: :created, location: @profissao }
+        format.html { redirect_to profissoes_path, notice: 'Registro criado com sucesso.' }
       else
         format.html { render :new }
-        format.json { render json: @profissao.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +40,9 @@ class ProfissoesController < ApplicationController
   def update
     respond_to do |format|
       if @profissao.update(profissao_params)
-        format.html { redirect_to @profissao, notice: 'Profissao was successfully updated.' }
-        format.json { render :show, status: :ok, location: @profissao }
+        format.html { redirect_to profissoes_path, notice: 'Registro atualizado com sucesso.' }
       else
         format.html { render :edit }
-        format.json { render json: @profissao.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +54,7 @@ class ProfissoesController < ApplicationController
       redirect_to profissoes_path, alert: "Não é possível deletar a profissao (#{@profissao.nome}). Existem pessoas ligadas a ela."
     else
       @profissao.destroy
-      format.html { redirect_to profissoes_url, notice: 'Profissao was successfully destroyed.' }
+      redirect_to profissoes_path, notice: 'Registro deletado om sucesso.'
     end
   end
 

@@ -28,11 +28,9 @@ class SeguimentosController < ApplicationController
 
     respond_to do |format|
       if @seguimento.save
-        format.html { redirect_to @seguimento, notice: 'Seguimento was successfully created.' }
-        format.json { render :show, status: :created, location: @seguimento }
+        format.html { redirect_to seguimentos_path, notice: 'Registro criando com sucesso.' }
       else
         format.html { render :new }
-        format.json { render json: @seguimento.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +40,9 @@ class SeguimentosController < ApplicationController
   def update
     respond_to do |format|
       if @seguimento.update(seguimento_params)
-        format.html { redirect_to @seguimento, notice: 'Seguimento was successfully updated.' }
-        format.json { render :show, status: :ok, location: @seguimento }
+        format.html { redirect_to seguimentos_path, notice: 'Registro atualizado com sucesso.' }
       else
         format.html { render :edit }
-        format.json { render json: @seguimento.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +54,7 @@ class SeguimentosController < ApplicationController
       redirect_to seguimentos_path, alert: "Não é possível deletar o seguimento (#{@seguimento.nome}). Existem pessoas ligadas a ele."
     else
       @seguimento.destroy
-      format.html { redirect_to seguimentos_url, notice: 'Seguimento was successfully destroyed.' }
+      redirect_to seguimentos_url, notice: 'Seguimento was successfully destroyed.' 
     end
   end
 

@@ -1,22 +1,14 @@
-<%= form_with(model: profissao, local: true) do |form| %>
-  <% if profissao.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(profissao.errors.count, "error") %> prohibited this profissao from being saved:</h2>
+<div class="box-body">
+  <%= form_with(model: profissao, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :nome, 'Profissão' %>
+    <%= form.text_field :nome, id: :profissao_nome, placeholder: 'Profissão', class: 'form-control input-sm' %>
+    <%= form.error_span(:nome) %>
+  </div>
 
-      <ul>
-      <% profissao.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+   <div class="box-footer">
+   <%= form.submit 'Salavar Registro', class: 'btn btn-primary' %>
+   <%= link_to 'Cancelar', profissoes_path, class: 'btn btn-danger' %>
+  </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome, id: :profissao_nome %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

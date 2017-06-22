@@ -1,27 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div id="pessoas">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Profissões Cadastradas</h3>
 
-<h1>Profissoes</h1>
+      <div class="box-tools">
+        <%= link_to 'Novo Cadastro', new_profissao_path, class: 'btn btn-sm btn-primary' %>
+      </div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="box-body no-padding">
 
-  <tbody>
-    <% @profissoes.each do |profissao| %>
-      <tr>
-        <td><%= profissao.nome %></td>
-        <td><%= link_to 'Show', profissao %></td>
-        <td><%= link_to 'Edit', edit_profissao_path(profissao) %></td>
-        <td><%= link_to 'Destroy', profissao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <table class="table">
+        <thead>
+          <tr>
+          <th width="85%">Nome</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<br>
-
-<%= link_to 'New Profissao', new_profissao_path %>
+        <tbody>
+          <% @profissoes.each do |profissao| %>
+          <tr>
+            <td><%= profissao.nome %></td>
+            <td>
+             <%= link_to 'Edit', edit_profissao_path(profissao), class: 'btn btn-xs btn-primary' %>
+             <%= link_to 'Destroy', profissao, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
+           </tr>
+           <% end %>
+         </tbody>
+       </table>
+     </div>
+   </div>
+ </div>
