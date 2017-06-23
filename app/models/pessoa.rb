@@ -18,4 +18,11 @@ class Pessoa < ApplicationRecord
   def indicado
     Pessoa.select(:nome).where(:id => self.pessoa_id)[0].try(:nome)
   end
+
+  def self.search(query)
+    where("(TRANSLATE(lower(pessoas.nome), 
+      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+      like ?)", "%#{query.downcase}%")
+  end
 end

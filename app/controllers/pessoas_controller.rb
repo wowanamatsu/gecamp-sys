@@ -7,11 +7,7 @@ class PessoasController < ApplicationController
     if params[:select2_trigger]
       if params[:q]
         @pessoas = Pessoa.select("pessoas.id, pessoas.nome")
-        .where("(TRANSLATE(lower(pessoas.nome), 
-          'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
-          'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
-          like '%#{params[:q].downcase}%' or lower(pessoas.nome) 
-          like '%#{params[:q].downcase}%')")
+        .search(params[:q])
         @pessoa = @pessoas.page(params[:page] || 1).per(10)
       end
 
@@ -25,6 +21,11 @@ class PessoasController < ApplicationController
           }
         }
       end
+    elsif params[:search] and params[:search] != ''
+      @pessoas = Pessoa.select(:id, :nome, :endereco, :telefone_residencial, :celular)
+      .search(params[:search])
+      .order(:nome).page(params[:page] || 1).per(10)
+      render action: :index, layout: request.xhr? == nil
     else
       @pessoas = Pessoa.select(:id, :nome, :endereco, :telefone_residencial, :celular)
       .order(:nome).page(params[:page] || 1).per(10)

@@ -4,12 +4,16 @@
       <h3 class="box-title">Pessoas Cadastradas</h3>
 
       <div class="box-tools">
+        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target=".busca_pessoas">
+          Busca
+        </button>
         <%= link_to 'Novo Cadastro', new_pessoa_path, class: 'btn btn-sm btn-primary' %>
       </div>
     </div>
 
     <div class="box-body no-padding">
 
+    <% if @pessoas.exists? %>
       <table class="table">
         <thead>
           <tr>
@@ -37,10 +41,43 @@
           <% end %>
         </tbody>
       </table>
+      <% else %>
+      <div class="box-body">
+      <div class="callout callout-danger">
+                <h4>Não foram encontrados Resultados no Banco</h4>
+
+                <p>Por favor, verifique os termos utilizados na busca.</p>
+              </div>
+      </div>
+      <% end %>
     </div>
     <div class="box-footer clearfix">
       <div class="kaminari">
         <%= paginate @pessoas %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade busca_pessoas" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal_dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Sistema de Busca</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag pessoas_path, method: :get do %>
+          <div class="input-group input-group-sm">
+            <%= text_field_tag 'search', nil, required: true, placeholder: 'Informe um nome...', class: 'form-control' %>
+            <span class="input-group-btn">
+              <%= submit_tag 'Buscar', class: 'btn btn-primary btn-flat' %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+      <%= link_to 'Cancelar', pessoas_path, :class => "btn btn-danger" %>
       </div>
     </div>
   </div>

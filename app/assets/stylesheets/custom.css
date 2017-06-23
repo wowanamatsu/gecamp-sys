@@ -23,6 +23,19 @@ body {
   margin-top: 10px;
 }
 
+.modal_dialog {
+  width: 100%;
+  height: 800px;
+  margin: 0 auto;
+  margin-left: -20px;
+  background-color: rgba(0,0,0,0);
+}
+
+.modal_dialog .modal-content {
+  width: 500px;
+  margin: 0 auto;
+}
+
 
 /* Estilos da paginação do kaminari */
 .pagination a, .pagination span.current, .pagination span.gap {
