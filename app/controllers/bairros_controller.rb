@@ -82,10 +82,11 @@ class BairrosController < ApplicationController
   # DELETE /bairros/1
   # DELETE /bairros/1.json
   def destroy
-    @bairro.destroy
-    respond_to do |format|
-      format.html { redirect_to bairros_url, notice: "Bairro deletado com sucesso." }
-      format.json { head :no_content }
+    if not @bairro.pessoas.empty?
+      redirect_to bairros_path, alert: "O bairro (#{@bairro.nome}) não pode ser deletado, existem endereços vinculados."
+    else
+      @bairro.destroy
+      redirect_to bairros_url, notice: "Bairro deletado com sucesso." 
     end
   end
 

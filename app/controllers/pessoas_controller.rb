@@ -44,6 +44,10 @@ class PessoasController < ApplicationController
 
   # GET /pessoas/1/edit
   def edit
+    if @pessoa.data_nascimento
+      data = @pessoa.data_nascimento
+      @pessoa.data_nascimento = data.to_s[8..10] + '/' + data.to_s[5..6] + '/' + data.to_s[0..3]
+    end
   end
 
   # POST /pessoas

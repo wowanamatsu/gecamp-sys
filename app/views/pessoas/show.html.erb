@@ -58,7 +58,7 @@
           <hr>
           <div>E-mail: <b><%= @pessoa.email %></b></div>
           <hr>
-          <div>Data Nasc.: <b><%= @pessoa.data_nascimento %></b></div>
+          <div>Data Nasc.: <b><%= data_mask(@pessoa.data_nascimento) %></b></div>
           <div>N. de Filhos: <b><%= @pessoa.numero_de_filhos %></b></div>
           <div>N. de Dependentes: <b><%= @pessoa.numero_de_dependentes %></b></div>
           <div>Renda Familiar: <b>R$ <%= @pessoa.renda_familiar %></b></div>

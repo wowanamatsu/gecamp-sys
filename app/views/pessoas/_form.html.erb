@@ -29,7 +29,7 @@
 
     <div class="col-xs-12 col-sm-2">
       <%= form.label :data_nascimento %>
-      <%= form.text_field :data_nascimento, placeholder: 'Data nascimento', class: 'form-control datepicker' %>
+      <%= form.text_field :data_nascimento, placeholder: 'dd/mm/aaaa', class: 'form-control data_mask' %>
       <%= form.error_span(:data_nascimento) %>
     </div>
 

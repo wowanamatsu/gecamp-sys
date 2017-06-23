@@ -12,4 +12,9 @@ module ApplicationHelper
     flash_messages.join('\n').html_safe
   end
 
+
+  def data_mask(data)
+    data_formt = data.to_s[8..10] + '/' + data.to_s[5..6] + '/' + data.to_s[0..3] if data
+  end
+
 end

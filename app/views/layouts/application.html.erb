@@ -95,8 +95,7 @@
 
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li>
+        <li class="active">
           <%= link_to pessoas_path do %>
           <i class="fa fa-link"></i> <span>Cadastrar Pessoa</span>
           <% end %>
@@ -162,9 +161,10 @@
     <div class="control-sidebar-bg"></div>
   </div>
   <script type="text/javascript">
-    $(".telefone").mask("(999) 9999-9999?9");
+    $(".telefone").mask("(99) 99999-999?9");
     $(".cep").mask("99.999-999");
     $(".cpf").mask("999.999.999-99");
+    $(".data_mask").mask("99/99/9999");
     $('.datepicker').datepicker({
       dateFormat: "dd-mm-yy"
     });
