@@ -28,4 +28,36 @@ class Pessoa < ApplicationRecord
       like ?)", "%#{query.downcase}%")
     .where(:ativo => 'ativo')
   end
+
+  def self.main_search(query)
+    cidade = Cidade.where("(TRANSLATE(lower(cidades.nome), 
+      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+      like ?)", "%#{query}%")
+
+    busca_cidade = nil
+    if not cidade.empty?
+      busca_cidade = cidade[0].id
+    else
+      busca_cidade = 9999
+    end
+
+    where("(TRANSLATE(lower(pessoas.nome), 
+      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+      like ?) 
+
+      OR pessoas.telefone_residencial LIKE ? 
+
+      OR (TRANSLATE(lower(pessoas.endereco),
+      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ',
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') LIKE ?) 
+
+      OR pessoas.celular LIKE ? OR pessoas.cidade_id = ?",
+
+
+      "%#{query.downcase}%", "%#{query}%", "%#{query}%", "%#{query}%", busca_cidade)
+    .where(:ativo => 'ativo')
+  end
+
 end
