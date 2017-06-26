@@ -1,5 +1,6 @@
 class SeguimentosController < ApplicationController
   before_action :set_seguimento, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /seguimentos
   # GET /seguimentos.json

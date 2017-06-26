@@ -1,5 +1,6 @@
 class PessoasController < ApplicationController
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /pessoas
   # GET /pessoas.json
@@ -28,6 +29,7 @@ class PessoasController < ApplicationController
       render action: :index, layout: request.xhr? == nil
     else
       @pessoas = Pessoa.select(:id, :nome, :endereco, :telefone_residencial, :celular)
+      .where(:ativo => 'ativo')
       .order(:nome).page(params[:page] || 1).per(10)
       render action: :index, layout: request.xhr? == nil
     end
@@ -36,6 +38,7 @@ class PessoasController < ApplicationController
   # GET /pessoas/1
   # GET /pessoas/1.json
   def show
+    redirect_to pessoas_path, alert: 'Error! Essa transação não pode ser completada.' if not @pessoa.ativo?
   end
 
   # GET /pessoas/new
@@ -45,9 +48,13 @@ class PessoasController < ApplicationController
 
   # GET /pessoas/1/edit
   def edit
-    if @pessoa.data_nascimento
-      data = @pessoa.data_nascimento
-      @pessoa.data_nascimento = data.to_s[8..10] + '/' + data.to_s[5..6] + '/' + data.to_s[0..3]
+    if @pessoa.ativo?
+      if @pessoa.data_nascimento
+        data = @pessoa.data_nascimento
+        @pessoa.data_nascimento = data.to_s[8..10] + '/' + data.to_s[5..6] + '/' + data.to_s[0..3]
+      end
+    else
+      redirect_to pessoas_url, alert: 'Error! Essa transação não pode ser completada.'
     end
   end
 
@@ -80,7 +87,9 @@ class PessoasController < ApplicationController
   # DELETE /pessoas/1
   # DELETE /pessoas/1.json
   def destroy
-    @pessoa.destroy
+    # @pessoa.destroy
+    @pessoa.ativo = 'inativo'
+    @pessoa.save
     respond_to do |format|
       format.html { redirect_to pessoas_url, notice: 'Registro apagado com sucesso.' }
       format.json { head :no_content }

@@ -43,11 +43,12 @@
       </table>
       <% else %>
       <div class="box-body">
-      <div class="callout callout-danger">
-                <h4>Não foram encontrados Resultados no Banco</h4>
+        <div class="callout callout-danger">
+          <h4>Não foram encontrados Resultados no Banco</h4>
 
-                <p>Por favor, verifique os termos utilizados na busca.</p>
-              </div>
+          <p>Por favor, verifique os termos utilizados na busca.</p>
+        </div>
+        <%= link_to 'Pessoas', pessoas_path, class: 'btn btn-sm btn-primary' %>
       </div>
       <% end %>
     </div>

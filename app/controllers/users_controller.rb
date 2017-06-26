@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    else
+      @users = User.where(:id => current_user.id)
+    end
   end
 
   # GET /users/1
@@ -57,7 +61,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Usuário removido com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621000812) do
+ActiveRecord::Schema.define(version: 20170626192712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170621000812) do
     t.string "nome_social"
     t.bigint "seguimento_id"
     t.bigint "profissao_id"
+    t.integer "ativo", default: 1
     t.index ["bairro_id"], name: "index_pessoas_on_bairro_id"
     t.index ["cidade_id"], name: "index_pessoas_on_cidade_id"
     t.index ["estado_id"], name: "index_pessoas_on_estado_id"

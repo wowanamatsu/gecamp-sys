@@ -1,4 +1,6 @@
 class Pessoa < ApplicationRecord
+  enum ativo: [:inativo, :ativo]
+
   belongs_to :cidade
   belongs_to :bairro
   belongs_to :user
@@ -24,5 +26,6 @@ class Pessoa < ApplicationRecord
       'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
       'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
       like ?)", "%#{query.downcase}%")
+    .where(:ativo => 'ativo')
   end
 end

@@ -1,5 +1,6 @@
 class ProfissoesController < ApplicationController
   before_action :set_profissao, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /profissoes
   # GET /profissoes.json
