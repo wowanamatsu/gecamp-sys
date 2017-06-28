@@ -112,6 +112,10 @@ class PessoasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pessoa_params
-      params.require(:pessoa).permit(:nome, :endereco, :cidade_id, :bairro_id, :cep, :telefone_residencial, :celular, :email, :estado_civil, :sexo, :cor, :renda_familiar, :numero_de_filhos, :numero_de_dependentes, :user_id, :pessoa_id, :observacoes, :estado_id, :municipio_id, :data_nascimento, :nome_social, :seguimento_id, :profissao_id )
+      params.require(:pessoa).permit(:nome, :endereco, :cidade_id, :bairro_id, :cep, :telefone_residencial, 
+        :celular, :email, :estado_civil, :sexo, :cor, :renda_familiar, :numero_de_filhos, 
+        :numero_de_dependentes, :user_id, :pessoa_id, :observacoes, :estado_id, :municipio_id, 
+        :data_nascimento, :nome_social, :seguimento_id, :profissao_id, :facebook, :apoiador, :pesquisado,
+        :visitado )
     end
   end

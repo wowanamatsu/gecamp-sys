@@ -48,6 +48,9 @@
           <% end %>
           <div>Seguimento: <b><%= @pessoa.seguimento.try(:nome) %></b></div>
           <div>Profissão: <b><%= @pessoa.profissao.try(:nome) %></b></div>
+          <div>Apoiador: <b><%= @pessoa.apoiador? %></b></div>
+          <div>Pesquisado: <b><%= @pessoa.pesquisado? %></b></div>
+          <div>Visitado: <b><%= @pessoa.visitado? %></b></div>
           <hr>
           <div>Endereço: <b><%= @pessoa.endereco %></b></div>
           <div>Estado: <b><%= @pessoa.estado.try(:nome) %></b></div>
@@ -57,6 +60,7 @@
           <div>CEP: <b><%= @pessoa.cep %></b></div>
           <hr>
           <div>E-mail: <b><%= @pessoa.email %></b></div>
+          <div>Facebook: <b><%= @pessoa.facebook %></b></div>
           <hr>
           <div>Data Nasc.: <b><%= data_mask(@pessoa.data_nascimento) %></b></div>
           <div>N. de Filhos: <b><%= @pessoa.numero_de_filhos %></b></div>

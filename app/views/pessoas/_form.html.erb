@@ -144,14 +144,45 @@
           </div>
         </div>
 
-        <div class="form-group top-row">
-          <%= form.label :observacoes, 'Observações' %>
-          <%= form.text_area :observacoes, id: :pessoa_observacoes, placeholder: 'Obervações', class: 'form-control input-sm' %>
-        </div>
+        <div class="row top-row">
+          <div class="col-xs-12 col-sm-6">
+            <%= form.label :facebook %>
+            <%= form.text_field :facebook, placeholder: 'Facebook', class: 'form-control input-sm' %>
+          </div>
 
-        <div class="box-footer">
-          <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
-          <%= link_to 'Cancelar', pessoas_path, class: 'btn btn-danger' %>
+          <div class="col-xs-12 col-sm-2">
+            <%= form.label :apoiador %>
+            <%= form.select :apoiador, options_for_select([
+              ['Não','nao_apoiador'], 
+              ['Sim','sim_apoiador'] 
+              ], @pessoa.apoiador), {prompt: 'Selecione...'}, {class: 'form-control input-sm'} %>
+            </div>
+
+            <div class="col-xs-12 col-sm-2">
+              <%= form.label :pesquisado %>
+              <%= form.select :pesquisado, options_for_select([
+              ['Não','nao_pesquisado'], 
+              ['Sim','sim_pesquisado'] 
+              ], @pessoa.pesquisado), {prompt: 'Selecione...'}, {class: 'form-control input-sm'} %>
+            </div>
+
+            <div class="col-xs-12 col-sm-2">
+              <%= form.label :visitado %>
+              <%= form.select :visitado, options_for_select([
+              ['Não','nao_visitado'], 
+              ['Sim','sim_visitado'] 
+              ], @pessoa.visitado), {prompt: 'Selecione...'}, {class: 'form-control input-sm'} %>
+            </div>
+          </div>
+
+          <div class="form-group top-row">
+            <%= form.label :observacoes, 'Observações' %>
+            <%= form.text_area :observacoes, id: :pessoa_observacoes, placeholder: 'Obervações', class: 'form-control input-sm' %>
+          </div>
+
+          <div class="box-footer">
+            <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
+            <%= link_to 'Cancelar', pessoas_path, class: 'btn btn-danger' %>
+          </div>
+          <% end %>
         </div>
-        <% end %>
-      </div>
