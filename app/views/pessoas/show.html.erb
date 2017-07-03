@@ -19,12 +19,18 @@
           </li>
         </ul>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <%= link_to pessoas_path, class: 'btn btn-success btn-block' do %>
             <b>Voltar</b>
             <% end %>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <%= link_to "Gerar PDF", 
+                pessoa_path(@pessoa, :type_document => "pessoa", :format => "pdf"), 
+                :class => 'btn btn-primary active', 
+                :target => '_blank'%>
+          </div>
+          <div class="col-md-4">
             <%= link_to 'Editar', edit_pessoa_path, class: 'btn btn-primary btn-block' %>
           </div>
         </div>
@@ -46,6 +52,7 @@
           <div>Indicado por: <b><%= @pessoa.indicado%></b></div>
           <hr>
           <% end %>
+          <div>Nome Social: <b><%= @pessoa.nome_social %></b></div>
           <div>Seguimento: <b><%= @pessoa.seguimento.try(:nome) %></b></div>
           <div>Profissão: <b><%= @pessoa.profissao.try(:nome) %></b></div>
           <div>Apoiador: <b><%= @pessoa.apoiador? %></b></div>

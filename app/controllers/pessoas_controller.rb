@@ -47,6 +47,15 @@ class PessoasController < ApplicationController
   # GET /pessoas/1.json
   def show
     redirect_to pessoas_path, alert: 'Error! Essa transação não pode ser completada.' if not @pessoa.ativo?
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PessoaPDF.new(user: current_user, pessoa_id: @pessoa.id)
+        send_data pdf.render, :filename => "person_#{@pessoa.nome}.pdf", 
+        :type => "application/pdf", 
+        :disposition => "inline"
+      end
+    end
   end
 
   # GET /pessoas/new

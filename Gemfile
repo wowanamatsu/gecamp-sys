@@ -22,6 +22,8 @@ gem 'twitter-bootstrap-rails'
 gem 'kaminari', '~> 0.16.3'
 gem 'cancancan'
 gem 'jquery-ui-rails'
+gem 'prawn'
+gem 'prawn-table'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
