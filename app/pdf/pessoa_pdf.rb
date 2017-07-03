@@ -59,7 +59,7 @@ class PessoaPDF < Prawn::Document
     page_count.times do |i|
       go_to_page(i+1)
 
-      draw_text "GECAMP   -   Planaltina, #{I18n.l Time.now, :format => '%d de %B de %Y'}" +
+      draw_text "GECAMP   -   Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}" +
       "    -    Gerado por: #{@user.name}", :at => [120, -10], :font => "Arial", :size => 10
     end
   end
