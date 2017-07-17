@@ -82,7 +82,7 @@ class PessoasController < ApplicationController
 
     respond_to do |format|
       if @pessoa.save
-        format.html { redirect_to pessoas_path, notice: 'Registro adicionado com sucesso.' }
+        format.html { redirect_to @pessoa, notice: 'Registro adicionado com sucesso.' }
       else
         format.html { render :new }
       end
