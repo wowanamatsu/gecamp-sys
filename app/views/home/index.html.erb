@@ -1,1 +1,37 @@
-<h1>...</h1>
+<% if @pessoas.exists? %>
+<div class="col-md-6">
+  <div class="box box-success">
+    <div class="box-header">
+      <h3 class="box-title">
+        <span class="label label-success">Aniversariantes do Dia</span>
+        <span class="label label-danger"><%= @total %> Aniversariantes do Mês</span>
+      </h3>
+      <div class="box-tools">
+      </div>
+    </div>
+
+    <div class="box-body no-padding">
+      <table class="table">
+        <tbody>
+          <% @pessoas.each do |pessoa| %>
+          <tr>
+            <td>
+              <%= pessoa.nome %>
+            </td>
+            <td>
+              <%= pessoa.celular %>
+            </td>
+            <td>
+              <%= data_mask(pessoa.data_nascimento) %>
+              <span class="label label-success">
+                <span class="fa fa-heart"></span>
+              </span>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
