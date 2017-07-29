@@ -125,6 +125,6 @@ class PessoasController < ApplicationController
         :celular, :email, :estado_civil, :sexo, :cor, :renda_familiar, :numero_de_filhos, 
         :numero_de_dependentes, :user_id, :pessoa_id, :observacoes, :estado_id, :municipio_id, 
         :data_nascimento, :nome_social, :seguimento_id, :profissao_id, :facebook, :apoiador, :pesquisado,
-        :visitado )
+        :visitado, :complemento )
     end
   end
