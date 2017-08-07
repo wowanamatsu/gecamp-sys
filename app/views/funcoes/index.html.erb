@@ -1,0 +1,34 @@
+<div id="estados">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Funções Cadastradas</h3>
+
+      <div class="box-tools">
+        <%= link_to 'Nova Função', new_funcao_path, class: 'btn btn-primary btn-sm' %>
+      </div>
+    </div>
+
+    <div class="box-body no-padding">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @funcoes.each do |funcao| %>
+          <tr>
+            <td><%= funcao.nome %></td>
+            <td style="text-align: right"><%= link_to 'Edit', edit_funcao_path(funcao), class: 'btn btn-xs btn-success' %>
+              <%= link_to 'Destroy', funcao, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

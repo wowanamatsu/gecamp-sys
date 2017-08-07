@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728235620) do
+ActiveRecord::Schema.define(version: 20170807014148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 20170728235620) do
     t.string "sigla"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "funcoes", force: :cascade do |t|
+    t.string "nome"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_funcoes_on_user_id"
   end
 
   create_table "municipios", force: :cascade do |t|
@@ -122,6 +130,7 @@ ActiveRecord::Schema.define(version: 20170728235620) do
 
   add_foreign_key "bairros", "cidades"
   add_foreign_key "cidades", "municipios"
+  add_foreign_key "funcoes", "users"
   add_foreign_key "municipios", "estados"
   add_foreign_key "pessoas", "bairros"
   add_foreign_key "pessoas", "cidades"

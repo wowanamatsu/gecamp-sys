@@ -1,0 +1,18 @@
+<div class="box box-success">
+	<div class="box-header with-border">
+		<h3 class="box-title">Função Cadastrada</h3>
+	</div>
+
+	<div class="box-body">
+		<ul class="list-group list-group-unbordered">
+			<li class="list-group-item">
+			<strong>Nome:</strong> <%= @funcao.nome %>
+			</li>
+		</ul>
+
+		<div class="box-footer">
+			<%= link_to 'Editar', edit_funcao_path(@funcao), class: 'btn btn-primary' %> 
+			<%= link_to 'Voltar', funcoes_path, class: 'btn btn-danger' %>
+		</div>
+	</div>
+</div>

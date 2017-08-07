@@ -1,0 +1,14 @@
+<div class="box-body">
+  <%= form_with(model: funcao, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :funcao_nome, placeholder: 'Função', class: 'form-control input-sm' %>
+    <%= form.error_span(:nome) %>
+  </div>
+
+  <div class="box-footer">
+    <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', funcoes_path, class: 'btn btn-danger' %>
+  </div>  
+  <% end %>
+</div>
