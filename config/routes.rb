@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'relatorios/index'
+
   resources :funcoes
   resources :profissoes
   resources :seguimentos
   resources :pessoas
   resources :users
+  resources :relatorios
 
   devise_for :users, :skip => [:registrations, :sessions]
 

@@ -14,7 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -99,60 +99,65 @@
         <li class="header">HEADER</li>
         <li class="active">
           <%= link_to pessoas_path do %>
-          <i class="fa fa-link"></i> <span>Cadastrar Pessoa</span>
+            <i class="fa fa-link"></i> <span>Cadastrar Pessoa</span>
           <% end %>
         </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i>
-            <span>Gerenciar equipe</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <%= link_to 'Cadastrar Equipe', '#' %>
-            </li>
-            <li>
-              <%= link_to 'Funções da Equipe', funcoes_path %>
-            </li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Configurações</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <%= link_to 'Profissão', profissoes_path %>
-            </li>
-            <li>
-              <%= link_to 'Seguimento', seguimentos_path %>
-            </li>
-            <li>
-              <%= link_to 'Estados', estados_path %>
-            </li>
-            <li>
-              <%= link_to 'Municípios', municipios_path %>
-            </li>
-            <li>
-              <%= link_to 'Cidades', cidades_path %>
-            </li>
-            <li>
-              <%= link_to 'Bairros', bairros_path %>
-            </li>
-            <li>
-              <%= link_to 'Usuários', users_path %>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </aside>
+        <li>
+          <%= link_to relatorios_path do %>
+            <i class="fa fa-link"></i> <span>Relatórios</span>
+          <% end %>
+       </li>
+       <li class="treeview">
+        <a href="#"><i class="fa fa-link"></i>
+          <span>Gerenciar equipe</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <%= link_to 'Cadastrar Equipe', '#' %>
+          </li>
+          <li>
+            <%= link_to 'Funções da Equipe', funcoes_path %>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#"><i class="fa fa-link"></i> <span>Configurações</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <%= link_to 'Profissão', profissoes_path %>
+          </li>
+          <li>
+            <%= link_to 'Seguimento', seguimentos_path %>
+          </li>
+          <li>
+            <%= link_to 'Estados', estados_path %>
+          </li>
+          <li>
+            <%= link_to 'Municípios', municipios_path %>
+          </li>
+          <li>
+            <%= link_to 'Cidades', cidades_path %>
+          </li>
+          <li>
+            <%= link_to 'Bairros', bairros_path %>
+          </li>
+          <li>
+            <%= link_to 'Usuários', users_path %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</aside>
 
-  <div class="content-wrapper">
+<div class="content-wrapper">
       <!-- <section class="content-header">
         <h1>
           Page Header
