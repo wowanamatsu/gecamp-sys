@@ -44,6 +44,7 @@
 
       <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Outros dados</a></li>
+        <li><a href="#filhos" data-toggle="tab">Complementos</a></li>
       </ul>
 
       <div class="tab-content">
@@ -53,6 +54,9 @@
           <hr>
           <% end %>
           <div>Nome Social: <b><%= @pessoa.nome_social %></b></div>
+          <div>E-mail: <b><%= @pessoa.email %></b></div>
+          <div>Facebook: <b><%= @pessoa.facebook %></b></div>
+          <hr>
           <div>Seguimento: <b><%= @pessoa.seguimento.try(:nome) %></b></div>
           <div>Profissão: <b><%= @pessoa.profissao.try(:nome) %></b></div>
           <div>Apoiador: <b><%= @pessoa.apoiador? %></b></div>
@@ -67,16 +71,15 @@
           <div>Bairro: <b><%= @pessoa.bairro.try(:nome) %></b></div>
           <div>CEP: <b><%= @pessoa.cep %></b></div>
           <hr>
-          <div>E-mail: <b><%= @pessoa.email %></b></div>
-          <div>Facebook: <b><%= @pessoa.facebook %></b></div>
-          <hr>
+          <p>Observações</p>
+          <%= @pessoa.observacoes %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="filhos">
           <div>Data Nasc.: <b><%= data_mask(@pessoa.data_nascimento) %></b></div>
           <div>N. de Filhos: <b><%= @pessoa.numero_de_filhos %></b></div>
           <div>N. de Dependentes: <b><%= @pessoa.numero_de_dependentes %></b></div>
           <div>Renda Familiar: <b>R$ <%= @pessoa.renda_familiar %></b></div>
           <hr>
-          <p>Observações</p>
-          <%= @pessoa.observacoes %>
         </div>
       </div>
 
