@@ -102,11 +102,13 @@
             <i class="fa fa-link"></i> <span>Cadastrar Pessoa</span>
           <% end %>
         </li>
+        <% if current_user.admin?%>
         <li>
           <%= link_to relatorios_path do %>
             <i class="fa fa-link"></i> <span>Relatórios</span>
           <% end %>
        </li>
+       <% end %>
        <li class="treeview">
         <a href="#"><i class="fa fa-link"></i>
           <span>Gerenciar equipe</span>

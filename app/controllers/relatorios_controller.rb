@@ -1,11 +1,12 @@
 class RelatoriosController < ApplicationController
 	
 	def index
-		if params[:pessoa]['indicado_por'] and params[:pessoa]['indicado_por'] != ''
-			# @people = Pessoa.where("pessoa_id = ?", params[:indicado_por])
-			@people = Pessoa.where("pessoa_id = ?", params[:pessoa]['indicado_por'])
-			@result_indicado_por = "foram encontrados #{@people.count}, registros no sistema."
-			@display_indicado_por = @people.count > 0 ? true : false
+		if params[:pessoa]
+			if params[:pessoa]['indicado_por'] and params[:pessoa]['indicado_por'] != ''
+				@people = Pessoa.where("pessoa_id = ?", params[:pessoa]['indicado_por'])
+				@result_indicado_por = "foram encontrados #{@people.count}, registros no sistema."
+				@display_indicado_por = @people.count > 0 ? true : false
+			end
 		end
 
 		respond_to do |format|
