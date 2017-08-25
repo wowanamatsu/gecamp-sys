@@ -96,7 +96,7 @@ class PessoasController < ApplicationController
       if @pessoa.update(pessoa_params)
         format.html { redirect_to @pessoa, notice: 'Registro atualizado com sucesso.' }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice: 'Não foi possível atualizar o registro.' }
       end
     end
   end
@@ -125,6 +125,6 @@ class PessoasController < ApplicationController
         :celular, :email, :estado_civil, :sexo, :cor, :renda_familiar, :numero_de_filhos, 
         :numero_de_dependentes, :user_id, :pessoa_id, :observacoes, :estado_id, :municipio_id, 
         :data_nascimento, :nome_social, :seguimento_id, :profissao_id, :facebook, :apoiador, :pesquisado,
-        :visitado, :complemento )
+        :visitado, :complemento, :equipe, :funcao_id )
     end
   end

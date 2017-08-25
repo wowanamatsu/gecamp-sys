@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807014148) do
+ActiveRecord::Schema.define(version: 20170825131531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,9 +86,12 @@ ActiveRecord::Schema.define(version: 20170807014148) do
     t.integer "pesquisado", default: 0
     t.integer "visitado", default: 0
     t.string "complemento"
+    t.integer "equipe", default: 0
+    t.bigint "funcao_id"
     t.index ["bairro_id"], name: "index_pessoas_on_bairro_id"
     t.index ["cidade_id"], name: "index_pessoas_on_cidade_id"
     t.index ["estado_id"], name: "index_pessoas_on_estado_id"
+    t.index ["funcao_id"], name: "index_pessoas_on_funcao_id"
     t.index ["municipio_id"], name: "index_pessoas_on_municipio_id"
     t.index ["pessoa_id"], name: "index_pessoas_on_pessoa_id"
     t.index ["profissao_id"], name: "index_pessoas_on_profissao_id"
@@ -135,6 +138,7 @@ ActiveRecord::Schema.define(version: 20170807014148) do
   add_foreign_key "pessoas", "bairros"
   add_foreign_key "pessoas", "cidades"
   add_foreign_key "pessoas", "estados"
+  add_foreign_key "pessoas", "funcoes"
   add_foreign_key "pessoas", "municipios"
   add_foreign_key "pessoas", "pessoas"
   add_foreign_key "pessoas", "profissoes"

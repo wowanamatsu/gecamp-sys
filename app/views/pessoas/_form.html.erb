@@ -1,6 +1,26 @@
 <div class="box-body">
   <%= form_with(model: pessoa, local: true, html: {:id => 'teste'}) do |form| %>
   <%= form.hidden_field :user_id, :value => current_user.id %>
+  <% if current_user.admin? %>
+    <div class="row top-row">
+      <div class="col-xs-12 col-sm-3">
+        <div style="">
+          <%= form.label :equipe, 'Membro da Equipe?' %>
+          <%= form.select :equipe, options_for_select([
+            ['Não', 'nao'], 
+            ['Sim', 'sim'], 
+            ], @pessoa.equipe), {prompt: 'Selecione...'}, {:class => 'form-control input-sm'} %>
+            <%= form.error_span(:equipe) %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <%= form.label :funcao_id, 'Função' %>
+        <%= form.collection_select :funcao_id, Funcao.order(:nome), :id, :nome, prompt: 'Selecione', class: 'form-control' %>
+        <%= form.error_span(:funcao_id) %>
+      </div>
+      <div class="col-xs-12 col-sm-5"></div>
+    </div>
+  <% end %>
   <div class="row top-row">
     <div class="col-xs-12 col-sm-4">
       <%= form.label :nome %>

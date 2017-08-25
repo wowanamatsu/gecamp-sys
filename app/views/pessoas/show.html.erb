@@ -5,6 +5,17 @@
         <img class="profile-user-img img-responsive img-circle" src="/images/avatar.png" alt="User profile picture">
         <h3 class="profile-username text-center"><%= @pessoa.nome %></h3>
         <ul class="list-group list-group-unbordered">
+          <% if current_user.admin? %>
+            <li class="list-group-item">
+              <div style="color: red">
+                <b>Equipe <div class="pull-right"><%= @pessoa.equipe.capitalize %></div></b>
+                <% if @pessoa.funcao.try(:nome) %>
+                  <br>
+                  <b>Função <div class="pull-right"><%= @pessoa.funcao.try(:nome) %></div></b>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
           <li class="list-group-item">
             <b>Telefone <div class="pull-right"><%= @pessoa.telefone_residencial %></div></b>
           </li>
