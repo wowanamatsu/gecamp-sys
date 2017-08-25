@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :pessoas
   resources :users
   resources :relatorios
+  resources :equipes
 
   devise_for :users, :skip => [:registrations, :sessions]
 

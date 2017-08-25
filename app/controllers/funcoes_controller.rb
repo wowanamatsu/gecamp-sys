@@ -1,6 +1,7 @@
 class FuncoesController < ApplicationController
   before_action :set_funcao, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /funcoes
   # GET /funcoes.json
   def index
@@ -29,7 +30,7 @@ class FuncoesController < ApplicationController
 
     respond_to do |format|
       if @funcao.save
-        format.html { redirect_to @funcao, notice: 'Funcao was successfully created.' }
+        format.html { redirect_to @funcao, notice: 'Função criada com sucesso.' }
         format.json { render :show, status: :created, location: @funcao }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class FuncoesController < ApplicationController
   def update
     respond_to do |format|
       if @funcao.update(funcao_params)
-        format.html { redirect_to @funcao, notice: 'Funcao was successfully updated.' }
+        format.html { redirect_to @funcao, notice: 'Função atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @funcao }
       else
         format.html { render :edit }
@@ -55,10 +56,11 @@ class FuncoesController < ApplicationController
   # DELETE /funcoes/1
   # DELETE /funcoes/1.json
   def destroy
-    @funcao.destroy
-    respond_to do |format|
-      format.html { redirect_to funcoes_url, notice: 'Funcao was successfully destroyed.' }
-      format.json { head :no_content }
+    if not @funcao.pessoas.empty?
+      redirect_to funcoes_url, alert: "Não é possível deletar a função #{@funcao.nome}, existem vinculos."
+    else
+      @funcao.destroy
+      redirect_to funcoes_url, notice: 'Funçao foi deletada com sucesso.'
     end
   end
 
@@ -72,4 +74,4 @@ class FuncoesController < ApplicationController
     def funcao_params
       params.require(:funcao).permit(:nome, :user_id)
     end
-end
+  end

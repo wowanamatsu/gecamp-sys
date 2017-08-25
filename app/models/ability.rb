@@ -4,10 +4,12 @@ class Ability
     if user.admin?
       can :manage, :all
 
-    elsif user.ativo?
+    elsif user.ativo? and user.normal?
       can [:read, :create, :update], [Pessoa, Bairro, Cidade, Estado, Municipio, Profissao, Seguimento]
       
-      can [:read, :update], User 
+      can [:read, :update], User
+
+      cannot [:read, :create, :update], Funcao
 
     else
       # can [:update], User
