@@ -15,10 +15,12 @@
       </div>
       <div class="col-xs-12 col-sm-4">
         <%= form.label :funcao_id, 'Função' %>
-        <%= form.collection_select :funcao_id, Funcao.order(:nome), :id, :nome, prompt: 'Selecione', class: 'form-control' %>
+        <%= form.collection_select :funcao_id, Funcao.order(:nome), :id, :nome, {prompt: 'Selecione'}, {class: 'form-control input-sm'} %>
         <%= form.error_span(:funcao_id) %>
       </div>
-      <div class="col-xs-12 col-sm-5"></div>
+      <div class="col-xs-12 col-sm-5">
+        <div style="background: #d2d6de; height: 28px; margin-top: 25px;"></div>
+      </div>
     </div>
   <% end %>
   <div class="row top-row">

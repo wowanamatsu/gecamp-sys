@@ -99,18 +99,18 @@
         <li class="header">HEADER</li>
         <li class="active">
           <%= link_to pessoas_path do %>
-            <i class="fa fa-link"></i> <span>Cadastrar Pessoa</span>
+            <i class="fa fa-plus-square"></i> <span>Cadastrar Pessoa</span>
           <% end %>
         </li>
         <% if current_user.admin?%>
         <li>
           <%= link_to relatorios_path do %>
-            <i class="fa fa-link"></i> <span>Relatórios</span>
+            <i class="fa fa-file-pdf-o red"></i> <span>Relatórios</span>
           <% end %>
        </li>
        <% end %>
        <li class="treeview">
-        <a href="#"><i class="fa fa-link"></i>
+        <a href="#"><i class="fa fa-folder-open"></i>
           <span>Gerenciar equipe</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
@@ -126,7 +126,7 @@
         </ul>
       </li>
       <li class="treeview">
-        <a href="#"><i class="fa fa-link"></i> <span>Configurações</span>
+        <a href="#"><i class="fa fa-cogs"></i> <span>Configurações</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>

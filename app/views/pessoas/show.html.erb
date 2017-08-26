@@ -5,6 +5,9 @@
         <img class="profile-user-img img-responsive img-circle" src="/images/avatar.png" alt="User profile picture">
         <h3 class="profile-username text-center"><%= @pessoa.nome %></h3>
         <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Idade <div class="pull-right"><%= idade(@pessoa.data_nascimento) %></div></b>
+          </li>
           <% if current_user.admin? %>
             <li class="list-group-item">
               <div style="color: red">

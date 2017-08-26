@@ -34,10 +34,10 @@
             <td><%= pessoa.cidade.try(:nome) %></td>
             <td><%= pessoa.telefone_residencial %></td>
             <td><%= pessoa.celular %></td>
-            <td>
-              <%= link_to 'Show', pessoa, class: 'btn btn-xs btn-success' %>
-              <%= link_to 'Edit', edit_pessoa_path(pessoa), class: 'btn btn-xs btn-warning' %>
-              <%= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+            <td style="text-align: right;">
+              <%= link_to 'Exibir', pessoa, class: 'btn btn-xs btn-success' %>
+              <%= link_to 'Editar', edit_pessoa_path(pessoa), class: 'btn btn-xs btn-warning' %>
+              <%= link_to 'Deletar', pessoa, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
             </td>
           </tr>
           <% end %>

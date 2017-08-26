@@ -17,4 +17,12 @@ module ApplicationHelper
     data_formt = data.to_s[8..10] + '/' + data.to_s[5..6] + '/' + data.to_s[0..3] if data
   end
 
+  def idade(data)
+    if data
+      (DateTime.now.year - data.year).to_s + ' anos'
+    else
+      '------'
+    end
+  end
+
 end
