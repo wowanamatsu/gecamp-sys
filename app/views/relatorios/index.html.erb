@@ -5,7 +5,7 @@
   <td>
     <div class="col-lg-5">
     <%#= select_tag "indicado_por", options_from_collection_for_select(Pessoa.order(:nome), "id", "nome"), prompt: 'indicado por', :class => 'form-control' %>
-    <%= render :partial => 'indicado_select2' %>
+    <%#= render :partial => 'indicado_select2' %>
     </div>
     <div class="col-lg-3">
       <%= submit_tag 'Pesquisar', class: 'btn btn-success' %>
