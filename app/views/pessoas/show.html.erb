@@ -34,9 +34,13 @@
         </ul>
         <div class="row">
           <div class="col-md-4">
-            <%= link_to pessoas_path, class: 'btn btn-success btn-block' do %>
-            <b>Voltar</b>
-            <% end %>
+            <% if params[:equipe] %>
+              <%= link_to equipes_path, class: 'btn btn-success btn-block' do %>
+              <b>Voltar</b>
+            <% end else %>
+              <%= link_to pessoas_path, class: 'btn btn-success btn-block' do %>
+              <b>Voltar</b>
+            <% end end %>
           </div>
           <div class="col-md-4">
             <%= link_to "Gerar PDF", 
