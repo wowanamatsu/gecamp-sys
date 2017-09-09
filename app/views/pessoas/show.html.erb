@@ -43,13 +43,13 @@
             <% end end %>
           </div>
           <div class="col-md-4">
-            <%= link_to "Gerar PDF", 
+            <%= link_to 'Editar', edit_pessoa_path, class: 'btn btn-primary btn-block' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to "PDF", 
                 pessoa_path(@pessoa, :type_document => "pessoa", :format => "pdf"), 
                 :class => 'btn btn-primary active', 
                 :target => '_blank'%>
-          </div>
-          <div class="col-md-4">
-            <%= link_to 'Editar', edit_pessoa_path, class: 'btn btn-primary btn-block' %>
           </div>
         </div>
       </div>
@@ -61,12 +61,12 @@
     <div class="nav-tabs-custom">
 
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Outros dados</a></li>
-        <li><a href="#filhos" data-toggle="tab">Complementos</a></li>
+        <li role="presentation" class="active"><a href="#dados_iniciais" aria-controls="dados_iniciais" role="tab" data-toggle="tab">Dados Iniciais</a></li>
+        <li><a href="#complementos" data-toggle="tab">Complementos</a></li>
       </ul>
 
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
+        <div role="tabpanel" class="tab-pane active" id="dados_iniciais">
           <% if @pessoa.pessoa_id %>
           <div>Indicado por: <b><%= @pessoa.indicado%></b></div>
           <hr>
@@ -88,16 +88,27 @@
           <div>Cidade: <b><%= @pessoa.cidade.try(:nome) %></b></div>
           <div>Bairro: <b><%= @pessoa.bairro.try(:nome) %></b></div>
           <div>CEP: <b><%= @pessoa.cep %></b></div>
-          <hr>
-          <p>Observações</p>
-          <%= @pessoa.observacoes %>
         </div>
-        <div role="tabpanel" class="tab-pane" id="filhos">
+        <div role="tabpanel" class="tab-pane" id="complementos">
           <div>Data Nasc.: <b><%= data_mask(@pessoa.data_nascimento) %></b></div>
           <div>N. de Filhos: <b><%= @pessoa.numero_de_filhos %></b></div>
           <div>N. de Dependentes: <b><%= @pessoa.numero_de_dependentes %></b></div>
           <div>Renda Familiar: <b>R$ <%= @pessoa.renda_familiar %></b></div>
           <hr>
+          <p>Observações</p>
+          <%= @pessoa.observacoes %>
+          <% @pessoa.carros.each do |carro|%>
+            <div>
+              <%= carro.nome %>
+            </div>
+            <div>
+              <%= carro.cor %>
+            </div>
+            <div>
+              <%= carro.placa %>
+            </div>
+            <%= '*' * 12 %>
+          <% end %>
         </div>
       </div>
 

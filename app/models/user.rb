@@ -3,6 +3,7 @@ class User < ApplicationRecord
   enum status: [:inativo, :ativo]
 
   has_many :pessoas, dependent: :restrict_with_error
+  has_many :carros
 
 
   # Include default devise modules. Others available are:

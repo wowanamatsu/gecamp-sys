@@ -14,6 +14,7 @@ class Pessoa < ApplicationRecord
   belongs_to :seguimento
   belongs_to :funcao, optional: true
   has_many :pessoas
+  has_many :carros
 
   validates_presence_of :nome, :endereco, :cidade_id, :seguimento_id, message: 'deve ser preenchido.'
   validates_presence_of :sexo, :cor, :estado_id, :municipio_id, message: 'deve ser preenchido.'

@@ -23,4 +23,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'grupo', 'grupos'
   inflect.irregular 'profissao', 'profissoes'
   inflect.irregular 'funcao', 'funcoes'
+  inflect.irregular 'carro', 'carros'
 end

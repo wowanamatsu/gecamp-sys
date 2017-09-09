@@ -1,0 +1,47 @@
+<%= form_with(model: carro, local: true) do |form| %>
+  <% if carro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carro.errors.count, "error") %> prohibited this carro from being saved:</h2>
+
+      <ul>
+      <% carro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :carro_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cor %>
+    <%= form.text_field :cor, id: :carro_cor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :placa %>
+    <%= form.text_field :placa, id: :carro_placa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :observacoes %>
+    <%= form.text_area :observacoes, id: :carro_observacoes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pessoa_id %>
+    <%= form.text_field :pessoa_id, id: :carro_pessoa_id %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :user_id %>
+    <%#= form.text_field :user_id, id: :carro_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
