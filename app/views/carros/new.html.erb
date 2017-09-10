@@ -1,5 +1,7 @@
-<h1>New Carro</h1>
+<div class="box box-success">
 
-<%= render 'form', carro: @carro %>
-
-<%= link_to 'Back', carros_path %>
+  <div class="box-header with-border">
+    <h3 class="box-title">Registrar novo Carro</h3>
+  </div>
+  <%= render 'form', :carro => @carro %>
+</div>

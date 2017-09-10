@@ -63,6 +63,9 @@
       <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#dados_iniciais" aria-controls="dados_iniciais" role="tab" data-toggle="tab">Dados Iniciais</a></li>
         <li><a href="#complementos" data-toggle="tab">Complementos</a></li>
+        <% if !@pessoa.carros.empty? %>
+          <li><a href="#carros" data-toggle="tab"><font color="green">Carro(s) Registrado(s)</font></a></li>
+        <% end %>
       </ul>
 
       <div class="tab-content">
@@ -97,19 +100,35 @@
           <hr>
           <p>Observações</p>
           <%= @pessoa.observacoes %>
-          <% @pessoa.carros.each do |carro|%>
-            <div>
-              <%= carro.nome %>
-            </div>
-            <div>
-              <%= carro.cor %>
-            </div>
-            <div>
-              <%= carro.placa %>
-            </div>
-            <%= '*' * 12 %>
-          <% end %>
         </div>
+        <% if !@pessoa.carros.empty? %>
+          <div role="tabpanel" class="tab-pane" id="carros">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th width="30%">Carro</th>
+                  <th width="20%">Placa</th>
+                  <th width="20%">Cor</th>
+                  <th width="50%" colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @pessoa.carros.each do |carro| %>
+                <tr>
+                  <td><%= carro.nome %></td>
+                  <td><%= carro.placa %></td>
+                  <td><%= carro.cor %></td>
+                  <td style="text-align: right">
+                    <%= link_to 'Editar', edit_carro_path(carro), class: 'btn btn-xs btn-success' %>
+                    <%= link_to 'Deletar', carro, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
       </div>
 
     </div>

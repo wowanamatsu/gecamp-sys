@@ -1,37 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div id="carros">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Carros Registrados</h3>
 
-<h1>Carros</h1>
+      <div class="box-tools">
+        <%= link_to 'Novo Carro', new_carro_path, class: 'btn btn-primary btn-sm' %>
+      </div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Cor</th>
-      <th>Placa</th>
-      <th>Observacoes</th>
-      <th>Pessoa</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="box-body no-padding">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="30%">Carro</th>
+            <th width="20%">Placa</th>
+            <th width="20%">Cor</th>
+            <th width="50%" colspan="3"></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @carros.each do |carro| %>
-      <tr>
-        <td><%= carro.nome %></td>
-        <td><%= carro.cor %></td>
-        <td><%= carro.placa %></td>
-        <td><%= carro.observacoes %></td>
-        <td><%= carro.pessoa %></td>
-        <td><%= carro.user %></td>
-        <td><%= link_to 'Show', carro %></td>
-        <td><%= link_to 'Edit', edit_carro_path(carro) %></td>
-        <td><%= link_to 'Destroy', carro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @carros.each do |carro| %>
+          <tr>
+            <td><%= carro.nome %></td>
+            <td><%= carro.placa %></td>
+            <td><%= carro.cor %></td>
+            <td style="text-align: right">
+              <%= link_to 'Editar', edit_carro_path(carro), class: 'btn btn-xs btn-success' %>
+              <%= link_to 'Deletar', carro, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="box-footer clearfix">
+        <div class="kaminari">
+          <%= paginate @carros %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(function() {
+      var loadingHTML ="<div class='box box-success'><div class='box-header'><h1 class='box-title'>\
+      GecampSYS</h1></div><div class='box-body'>Carregando os dados do sistema</div><div class='overlay'>\
+      <i class='fa fa-refresh fa-spin'></i></div></div></div>";
 
-<br>
+      $(document.body).off('click', 'nav.pagination a');
 
-<%= link_to 'New Carro', new_carro_path %>
+      $(document.body).on('click', 'nav.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $("#carros").html(loadingHTML).load(url, function(){
+          window.history.pushState(url, window.title, url);
+        });
+        return false;
+      });
+
+      $(window).bind('popstate', function(event) {
+        var url = location.href;
+        $("#pessoas_container").html(loadingHTML).load(url);
+      });
+    });
+  })
+</script>

@@ -1,6 +1,7 @@
-<h1>Editing Carro</h1>
+<div class="box box-success">
 
-<%= render 'form', carro: @carro %>
-
-<%= link_to 'Show', @carro %> |
-<%= link_to 'Back', carros_path %>
+  <div class="box-header with-border">
+    <h3 class="box-title">Atualizar Dados do Carro <strong>(Registrado para: <%= @carro.pessoa.try(:nome) %>)</strong></h3>
+  </div>
+  <%= render 'form', carro: @carro %>
+</div>
