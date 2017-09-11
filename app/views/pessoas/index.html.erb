@@ -2,7 +2,6 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Pessoas Cadastradas</h3>
-
       <div class="box-tools">
         <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target=".busca_pessoas">
           Busca
@@ -17,8 +16,8 @@
       <table class="table">
         <thead>
           <tr>
-            <th width="25%">Nome</th>
-            <th width="25%">Endereco</th>
+            <th width="23%">Nome</th>
+            <th width="27%">Endereco</th>
             <th width="10%">Cidade</th>
             <th width="10%">Telefone</th>
             <th width="10%">Celular</th>
@@ -30,11 +29,31 @@
           <% @pessoas.each do |pessoa| %>
           <tr>
             <td><%= pessoa.nome %></td>
-            <td><%= pessoa.endereco %></td>
+            <td>
+              <% if pessoa.apoiador? == 'NÃO' %>
+                <span class="badge bg-red">&nbsp</span>
+              <% else %>
+                <span class="badge bg-green">&nbsp</span>
+              <% end %>
+              <% if pessoa.visitado? == 'NÃO' %>
+                <span class="badge bg-orange">&nbsp</span>
+              <% else %>
+                <span class="badge bg-blue">&nbsp</span>
+              <% end %>
+              <% if pessoa.pesquisado? == 'NÃO' %>
+                <span class="badge bg-purple">&nbsp</span>
+              <% else %>
+                <span class="badge bg-brown">&nbsp</span>
+              <% end %>&nbsp&nbsp
+              <%= pessoa.endereco %>
+            </td>
             <td><%= pessoa.cidade.try(:nome) %></td>
             <td><%= pessoa.telefone_residencial %></td>
             <td><%= pessoa.celular %></td>
             <td style="text-align: right;">
+              
+                
+              
               <%= link_to 'Exibir', pessoa, class: 'btn btn-xs btn-success' %>
               <%= link_to 'Editar', edit_pessoa_path(pessoa), class: 'btn btn-xs btn-warning' %>
               <%= link_to 'Deletar', pessoa, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
@@ -55,7 +74,15 @@
       <% end %>
     </div>
     <div class="box-footer clearfix">
-        <%= page_entries_info @pessoas %>
+      <div style="text-align: center; font-size: 12px;">
+        <span class="badge bg-green">&nbsp</span> apoiador
+        <span class="badge bg-red">&nbsp</span> não apoiador |
+        <span class="badge bg-orange">&nbsp</span> não visitado
+        <span class="badge bg-blue">&nbsp</span> visitado |
+        <span class="badge bg-purple">&nbsp</span> não pesquisado
+        <span class="badge bg-brown">&nbsp</span> pesquisado
+      </div>
+      <%= page_entries_info @pessoas %>
       <div class="kaminari">
         <%= paginate @pessoas %>
       </div>

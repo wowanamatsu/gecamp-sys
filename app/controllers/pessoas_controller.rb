@@ -24,19 +24,19 @@ class PessoasController < ApplicationController
       end
 
     elsif params[:search] and params[:search] != ''
-      @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular)
+      @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular, :apoiador, :pesquisado, :visitado)
       .search(params[:search])
       .order(:nome).page(params[:page] || 1).per(10)
       render action: :index, layout: request.xhr? == nil
 
     elsif params[:main_search] and params[:main_search] != ''
-      @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular)
+      @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular, :apoiador, :pesquisado, :visitado)
       .main_search(params[:main_search])
       .order(:nome).page(params[:page] || 1).per(10)
       render action: :index, layout: request.xhr? == nil
 
     else
-      @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular)
+      @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular, :apoiador, :pesquisado, :visitado)
       .where(:ativo => 'ativo')
       .order(:nome).page(params[:page] || 1).per(10)
       render action: :index, layout: request.xhr? == nil
