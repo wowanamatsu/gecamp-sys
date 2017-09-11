@@ -57,11 +57,9 @@ class CarrosController < ApplicationController
 
     respond_to do |format|
       if @carro.save
-        format.html { redirect_to @carro, notice: 'Carro criado com sucesso.' }
-        format.json { render :show, status: :created, location: @carro }
+        format.html { redirect_to pessoa_path(@carro.pessoa_id), notice: 'Carro criado com sucesso.' }
       else
         format.html { render :new }
-        format.json { render json: @carro.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -71,11 +69,9 @@ class CarrosController < ApplicationController
   def update
     respond_to do |format|
       if @carro.update(carro_params)
-        format.html { redirect_to @carro, notice: 'Carro atualizado com sucesso.' }
-        format.json { render :show, status: :ok, location: @carro }
+        format.html { redirect_to pessoa_path(@carro.pessoa_id), notice: 'Carro atualizado com sucesso.' }
       else
         format.html { render :edit }
-        format.json { render json: @carro.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -85,8 +81,7 @@ class CarrosController < ApplicationController
   def destroy
     @carro.destroy
     respond_to do |format|
-      format.html { redirect_to carros_url, notice: 'Carro deletado com sucesso.' }
-      format.json { head :no_content }
+      format.html { redirect_to pessoa_path(@carro.pessoa_id), notice: 'Carro deletado com sucesso.' }
     end
   end
 

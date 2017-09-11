@@ -25,13 +25,17 @@
   </div>
 
   <div class="form-group">
-    <%= form.text_field :pessoa_id, id: :carro_pessoa_id %>
+    <% if controller.action_name == 'new' %>
+      <%= form.hidden_field :pessoa_id, id: :carro_pessoa_id, value: params[:id] %>
+    <% end %>
   </div>
 
 
   <div class="box-footer">
     <%= form.submit 'Salvar Registro', class: 'btn btn-primary' %>
-    <%= link_to 'Cancelar', '#', class: 'btn btn-warning' %>
+    <% if params[:voltar] == 'true' %>
+      <%= link_to 'Cancelar', pessoa_path(params[:id]), class: 'btn btn-warning' %>
+    <% end %>
   </div>
   <% end %>
 </div>
