@@ -1,7 +1,7 @@
 class Acao < ApplicationRecord
 
-	enum status: [:aberto, :fechado]
-	enum tipo_acao: [:pesquisa, :visita]
+	# enum status: [:aberto, :fechado]
+	# enum tipo_acao: [:pesquisa, :visita]
 
 	belongs_to :pessoa
 	belongs_to :user

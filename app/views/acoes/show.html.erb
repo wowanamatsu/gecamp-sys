@@ -2,12 +2,12 @@
 
 <p>
   <strong>Pessoa:</strong>
-  <%= @acao.pessoa %>
+  <%= @acao.pessoa.try(:nome) %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @acao.user %>
+  <%= @acao.user.try(:name) %>
 </p>
 
 <p>

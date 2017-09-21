@@ -1,5 +1,6 @@
 class AcoesController < ApplicationController
   before_action :set_acao, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /acoes
   # GET /acoes.json
@@ -19,16 +20,19 @@ class AcoesController < ApplicationController
 
   # GET /acoes/1/edit
   def edit
+    data = @acao.agendamento
+    @acao.agendamento = data.to_s[8..10] + '/' + data.to_s[5..6] + '/' + data.to_s[0..3]
   end
 
   # POST /acoes
   # POST /acoes.json
   def create
     @acao = Acao.new(acao_params)
+    @acao.user_id = current_user.id
 
     respond_to do |format|
       if @acao.save
-        format.html { redirect_to @acao, notice: 'Acao was successfully created.' }
+        format.html { redirect_to @acao, notice: 'Ação cadastrada com sucesso.' }
         format.json { render :show, status: :created, location: @acao }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class AcoesController < ApplicationController
   def update
     respond_to do |format|
       if @acao.update(acao_params)
-        format.html { redirect_to @acao, notice: 'Acao was successfully updated.' }
+        format.html { redirect_to @acao, notice: 'Ação atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @acao }
       else
         format.html { render :edit }
@@ -56,7 +60,7 @@ class AcoesController < ApplicationController
   def destroy
     @acao.destroy
     respond_to do |format|
-      format.html { redirect_to acoes_url, notice: 'Acao was successfully destroyed.' }
+      format.html { redirect_to acoes_url, notice: 'Ação deletada com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +75,4 @@ class AcoesController < ApplicationController
     def acao_params
       params.require(:acao).permit(:pessoa_id, :user_id, :tipo_acao, :assunto, :agendamento, :descricao, :observacao, :status)
     end
-end
+  end

@@ -3,7 +3,9 @@
 
   <div class="row top-row">
     <div class="col-xs-12 col-sm-12">
-      <%= form.hidden_field :pessoa_id, id: :acao_pessoa_id%>
+      <% if controller.action_name == 'new' %>
+        <%= form.text_field :pessoa_id, id: :acao_pessoa_id, value: params[:id] %>
+      <% end %>
       <%= form.error_span(:pessoa_id) %>
     </div>
   </div>
