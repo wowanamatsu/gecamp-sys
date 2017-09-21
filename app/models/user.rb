@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :pessoas, dependent: :restrict_with_error
   has_many :carros
+  has_many :acoes
 
 
   # Include default devise modules. Others available are:

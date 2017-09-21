@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :acoes
   resources :carros
   get 'relatorios/index'
 

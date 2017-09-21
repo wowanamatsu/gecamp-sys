@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Acoes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pessoa</th>
+      <th>User</th>
+      <th>Tipo acao</th>
+      <th>Assunto</th>
+      <th>Agendamento</th>
+      <th>Descricao</th>
+      <th>Observacao</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acoes.each do |acao| %>
+      <tr>
+        <td><%= acao.pessoa %></td>
+        <td><%= acao.user %></td>
+        <td><%= acao.tipo_acao %></td>
+        <td><%= acao.assunto %></td>
+        <td><%= acao.agendamento %></td>
+        <td><%= acao.descricao %></td>
+        <td><%= acao.observacao %></td>
+        <td><%= acao.status %></td>
+        <td><%= link_to 'Show', acao %></td>
+        <td><%= link_to 'Edit', edit_acao_path(acao) %></td>
+        <td><%= link_to 'Destroy', acao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acao', new_acao_path %>
