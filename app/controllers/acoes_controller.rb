@@ -32,11 +32,9 @@ class AcoesController < ApplicationController
 
     respond_to do |format|
       if @acao.save
-        format.html { redirect_to @acao, notice: 'Ação cadastrada com sucesso.' }
-        format.json { render :show, status: :created, location: @acao }
+        format.html { redirect_to @acao.pessoa, notice: 'Ação cadastrada com sucesso.' }
       else
         format.html { render :new }
-        format.json { render json: @acao.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,11 +44,9 @@ class AcoesController < ApplicationController
   def update
     respond_to do |format|
       if @acao.update(acao_params)
-        format.html { redirect_to @acao, notice: 'Ação atualizada com sucesso.' }
-        format.json { render :show, status: :ok, location: @acao }
+        format.html { redirect_to @acao.pessoa, notice: 'Ação atualizada com sucesso.' }
       else
         format.html { render :edit }
-        format.json { render json: @acao.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +56,7 @@ class AcoesController < ApplicationController
   def destroy
     @acao.destroy
     respond_to do |format|
-      format.html { redirect_to acoes_url, notice: 'Ação deletada com sucesso.' }
+      format.html { redirect_to @acao.pessoa, notice: 'Ação deletada com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -35,15 +35,15 @@
               <% else %>
                 <span class="badge bg-green">&nbsp</span>
               <% end %>
-              <% if pessoa.visitado? == 'NÃO' %>
+              <% if pessoa.visitado? <= 0 %>
                 <span class="badge bg-orange">&nbsp</span>
               <% else %>
-                <span class="badge bg-blue">&nbsp</span>
+                <span class="badge bg-blue"><%= pessoa.visitado? %></span>
               <% end %>
-              <% if pessoa.pesquisado? == 'NÃO' %>
+              <% if pessoa.pesquisado? <= 0 %>
                 <span class="badge bg-purple">&nbsp</span>
               <% else %>
-                <span class="badge bg-brown">&nbsp</span>
+                <span class="badge bg-brown"><%= pessoa.pesquisado? %></span>
               <% end %>&nbsp&nbsp
               <%= pessoa.endereco %>
             </td>

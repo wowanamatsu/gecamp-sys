@@ -4,7 +4,7 @@
   <div class="row top-row">
     <div class="col-xs-12 col-sm-12">
       <% if controller.action_name == 'new' %>
-        <%= form.text_field :pessoa_id, id: :acao_pessoa_id, value: params[:id] %>
+        <%= form.hidden_field :pessoa_id, id: :acao_pessoa_id, value: params[:id] %>
       <% end %>
       <%= form.error_span(:pessoa_id) %>
     </div>
@@ -13,19 +13,19 @@
   <div class="row top-row">
     <div class="col-xs-12 col-sm-3">
       <%= form.label :tipo_acao %>
-      <%= form.select :tipo_acao, options_for_select([['Pesquisa', 'pesquisa'],['Visita', 'visita']], @acao.tipo_acao), {prompt: 'Selecione'}, {class: 'form-control input-sm'} %>
+      <%= form.select :tipo_acao, options_for_select([['Pesquisa', 'pesquisa'],['Visita', 'visita']], @acao.tipo_acao), {prompt: 'Selecione'}, {:required => true, class: 'form-control input-sm'} %>
       <%= form.error_span(:tipo_acao) %>
     </div>
 
     <div class="col-xs-12 col-sm-5">
       <%= form.label :assunto %>
-      <%= form.text_field :assunto, id: :acao_assunto, class: 'form-control input-sm' %>
+      <%= form.text_field :assunto, id: :acao_assunto, required: true, class: 'form-control input-sm' %>
       <%= form.error_span(:assunto) %>
     </div>
 
     <div class="col-xs-12 col-sm-4">
       <%= form.label :agendamento %>
-      <%= form.text_field :agendamento, id: :acao_agendamento, placeholder: 'dd/mm/aaa', class: 'form-control input-sm data_mask' %>
+      <%= form.text_field :agendamento, id: :acao_agendamento, required: true, placeholder: 'dd/mm/aaa', class: 'form-control input-sm data_mask' %>
       <%= form.error_span(:agendamento) %>
     </div>
   </div>
@@ -33,13 +33,13 @@
   <div class="row top-row">
   <div class="col-xs-12 col-sm-8">
       <%= form.label :descricao %>
-      <%= form.text_field :descricao, id: :acao_descricao, class: 'form-control input-sm' %>
+      <%= form.text_field :descricao, id: :acao_descricao, required: true, class: 'form-control input-sm' %>
       <%= form.error_span(:descricao) %>
     </div>
 
     <div class="col-xs-12 col-sm-4">
       <%= form.label :status %>
-      <%= form.select :status, options_for_select([['Aberto', 'aberto'],['Fechado', 'fechado']], @acao.status), {prompt: 'Selecione'}, {class: 'form-control input-sm'} %>
+      <%= form.select :status, options_for_select([['Aberto', 'aberto'],['Fechado', 'fechado']], @acao.status), {prompt: 'Selecione'}, {:required => true, class: 'form-control input-sm'} %>
       <%= form.error_span(:status) %>
     </div>
   </div>
@@ -53,7 +53,10 @@
   </div>
 
   <div class="box-footer">
-    <%= form.submit %>
+    <%= form.submit 'Registrar Ação', class: 'btn btn-success' %>
+    <% if params[:voltar] == 'true' %>
+      <%= link_to 'Cancelar', pessoa_path(params[:id]), class: 'btn btn-danger' %>
+    <% end %>
   </div>
   <% end %>
 </div>

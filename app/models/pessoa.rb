@@ -77,19 +77,11 @@ class Pessoa < ApplicationRecord
   end
 
   def visitado?
-    if self.visitado == 'sim_visitado'
-      'SIM'
-    else
-      'NÃO'
-    end
+    Acao.where(pessoa_id: self.id, tipo_acao: 'visita').count
   end
 
   def pesquisado?
-    if self.pesquisado == 'sim_pesquisado'
-      'SIM'
-    else
-      'NÃO'
-    end
+    Acao.where(pessoa_id: self.id, tipo_acao: 'pesquisa').count
   end
 
 end

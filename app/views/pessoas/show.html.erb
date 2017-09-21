@@ -78,6 +78,9 @@
         <% if !@pessoa.carros.empty? %>
           <li><a href="#carros" data-toggle="tab"><font color="green">Carro(s) Registrado(s)</font></a></li>
         <% end %>
+        <% if !@pessoa.acoes.empty? %>
+          <li><a href="#acoes" data-toggle="tab"><font color="green">Ações Registradas</font></a></li>
+        <% end %>
       </ul>
 
       <div class="tab-content">
@@ -93,8 +96,12 @@
           <div>Seguimento: <b><%= @pessoa.seguimento.try(:nome) %></b></div>
           <div>Profissão: <b><%= @pessoa.profissao.try(:nome) %></b></div>
           <div>Apoiador: <b><%= @pessoa.apoiador? %></b></div>
-          <div>Pesquisado: <b><%= @pessoa.pesquisado? %></b></div>
-          <div>Visitado: <b><%= @pessoa.visitado? %></b></div>
+          <font color="navy">
+            <strong>
+              <div>Pesquisado: <b><%= @pessoa.pesquisado? > 0 ? 'SIM' : 'NÂO' %></b></div>
+              <div>Visitado: <b><%= @pessoa.visitado? > 0 ? 'SIM' : 'NÂO' %></b></div>
+            </strong>
+          </font>
           <hr>
           <div>Endereço: <b><%= @pessoa.endereco %></b></div>
           <div>Complemento: <b><%= @pessoa.complemento %></b></div>
@@ -141,6 +148,34 @@
             </table>
           </div>
         <% end %>
+        <% if !@pessoa.acoes.empty? %>
+          <div role="tabpanel" class="tab-pane" id="acoes">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th width="30%">Ação</th>
+                    <th width="20%">Status</th>
+                    <th width="20%">Agendamento</th>
+                    <th width="50%" colspan="3"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @pessoa.acoes.each do |acao| %>
+                  <tr>
+                    <td><%= acao.tipo_acao.capitalize %></td>
+                    <td><%= acao.status.capitalize %></td>
+                    <td><%= data_mask(acao.agendamento) %></td>
+                    <td style="text-align: right">
+                      <%= link_to 'Editar', edit_acao_path(acao), class: 'btn btn-xs btn-success' %>
+                      <%= link_to 'Deletar', acao, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% end %>
       </div>
 
     </div>
