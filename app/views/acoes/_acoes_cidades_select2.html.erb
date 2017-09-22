@@ -1,0 +1,82 @@
+<select id="acao_cidades" class="form-control" name="acao[cidade_id]">
+  <option value="">Selecione</option>
+</select>
+
+<div id="pessoa_cidade_modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+        <h4 class="modal-title">Gecamp</h4>
+      </div>
+      <div class="modal-body">
+        <p>Você deve selecionar primeiro o Município</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    function formatRepo (repo) {
+      if (repo.loading) return repo.text;
+
+      var markup = '<div class="clearfix">' +
+      '<div class="col-sm-6">' + repo.nome + '</div>' +
+      '</div>';
+
+      if (repo.description) {
+        markup += '<div>' + repo.nome + '</div>';
+      }
+      markup += '</div></div>';
+      return markup;
+    }
+
+    function formatRepoSelection (repo) {
+      return repo.nome || repo.text;
+    }
+
+    $('#acao_cidades').select2({
+      ajax: {
+        url: "/cidades.json?select2_trigger=true",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return {
+            q: params.term, 
+            page: params.page
+          };
+        },
+        processResults: function (data, params) {
+
+          params.page = params.page || 1;
+          return {
+            results: data.cidades,
+            pagination: {
+              more: (params.page * 30) < data.total_count
+            }
+          };
+        },
+        // cache: true
+      },
+      escapeMarkup: function (markup) { return markup; }, 
+      minimumInputLength: 1,
+      templateResult: formatRepo, 
+      templateSelection: formatRepoSelection 
+    });
+
+    <% if action_name == 'edit' or 'update' %>
+    var $option1 = $('<option selected><%= @acao.cidade.try(:nome) %></option>').val('<%= @acao.cidade_id %>');
+    $('#acao_cidades').append($option1).trigger('change');
+    <% elsif action_name == 'create' %>
+    <% unless form.object.cidade_id.nil? %>
+    var $option1 = $('<option selected><%= @acao.cidade.try(:nome) %></option>').val('<%= @acao.cidade_id %>');
+    $('#acao_cidades').append($option1).trigger('change');
+    <% end %>
+    <% end %>
+  });
+</script>

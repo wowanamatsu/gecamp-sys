@@ -5,7 +5,12 @@ class AcoesController < ApplicationController
   # GET /acoes
   # GET /acoes.json
   def index
-    @acoes = Acao.all
+    @acoes = Acao
+            .select(:id, :pessoa_id, :tipo_acao, :agendamento, :status, :assunto)
+            .order(:pessoa_id)
+            .order(:agendamento)
+            .page(params[:page] || 1).per(8)
+            render action: :index, layout: request.xhr? == nil
   end
 
   # GET /acoes/1
@@ -69,6 +74,6 @@ class AcoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def acao_params
-      params.require(:acao).permit(:pessoa_id, :user_id, :tipo_acao, :assunto, :agendamento, :descricao, :observacao, :status)
+      params.require(:acao).permit(:pessoa_id, :user_id, :tipo_acao, :assunto, :agendamento, :descricao, :observacao, :status, :cidade_id, :bairro_id, :endereco)
     end
   end

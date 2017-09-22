@@ -4,7 +4,7 @@
   <div class="row top-row">
     <div class="col-xs-12 col-sm-12">
       <% if controller.action_name == 'new' %>
-        <%= form.hidden_field :pessoa_id, id: :acao_pessoa_id, value: params[:id] %>
+      <%= form.hidden_field :pessoa_id, id: :acao_pessoa_id, value: params[:id] %>
       <% end %>
       <%= form.error_span(:pessoa_id) %>
     </div>
@@ -31,7 +31,7 @@
   </div>
 
   <div class="row top-row">
-  <div class="col-xs-12 col-sm-8">
+    <div class="col-xs-12 col-sm-8">
       <%= form.label :descricao %>
       <%= form.text_field :descricao, id: :acao_descricao, required: true, class: 'form-control input-sm' %>
       <%= form.error_span(:descricao) %>
@@ -45,17 +45,34 @@
   </div>
 
   <div class="row top-row">
+    <div class="col-xs-11 col-sm-3">
+      <%= form.label :cidade_id %>
+      <%= render :partial => 'acoes_cidades_select2', :locals => {:form => form} %>
+      <%= form.error_span(:cidade_id) %>
+    </div>
+    <div class="col-xs-11 col-sm-3">
+      <%= form.label :bairro_id %>
+      <%= render :partial => 'acoes_bairros_select2', :locals => {:form => form} %>
+      <%= form.error_span(:bairro_id) %>
+    </div>
+    <div class="col-xs-11 col-sm-6">
+      <%= form.label :endereco %>
+      <%= form.text_field :endereco, id: :acao_endereco, class: 'form-control input-sm' %>
+      <%= form.error_span(:endereco) %>
+    </div>
+  </div>
+
+  <div class="row top-row">
     <div class="col-xs-12 col-sm-12">
       <%= form.label :observacao, 'Observações' %>
       <%= form.text_area :observacao, id: :acao_observacao, class: 'form-control input-sm' %>
     </div>
-
   </div>
 
   <div class="box-footer">
     <%= form.submit 'Registrar Ação', class: 'btn btn-success' %>
     <% if params[:voltar] == 'true' %>
-      <%= link_to 'Cancelar', pessoa_path(params[:id]), class: 'btn btn-danger' %>
+    <%= link_to 'Cancelar', pessoa_path(params[:id]), class: 'btn btn-danger' %>
     <% end %>
   </div>
   <% end %>

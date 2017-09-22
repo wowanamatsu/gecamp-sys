@@ -1,44 +1,63 @@
-<p id="notice"><%= notice %></p>
+<div id="acoes">
+  <div class="box box-success">
+    <div class="box-header">
+      <h3 class="box-title"><%= @acao.pessoa.try(:nome) %></h3>
+      <div class="box-tools">
+        <div style="padding: 2px; text-decoration: underline; color: <%= @acao.status == 'aberto' ? 'red;' : 'green;' %>">
+          <h4><strong><%= @acao.status.upcase %></strong></h4>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Pessoa:</strong>
-  <%= @acao.pessoa.try(:nome) %>
-</p>
+    <div class="box-body">
+      <p>
+        <strong>Origem da Ação:</strong>
+        <%= @acao.tipo_acao.upcase %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @acao.user.try(:name) %>
-</p>
+      <p>
+        <strong>Agendamento:</strong>
+        <%= @acao.agendamento %>
+      </p>
 
-<p>
-  <strong>Tipo acao:</strong>
-  <%= @acao.tipo_acao %>
-</p>
+      <p>
+        <strong>Assunto:</strong>
+        <%= @acao.assunto.upcase %>
+      </p>
 
-<p>
-  <strong>Assunto:</strong>
-  <%= @acao.assunto %>
-</p>
+      <p>
+        <strong>Endereço:</strong>
+        <%= @acao.endereco %>
+      </p>
 
-<p>
-  <strong>Agendamento:</strong>
-  <%= @acao.agendamento %>
-</p>
+      <p>
+        <strong>Cidde:</strong>
+        <%= @acao.cidade.try(:nome) %>
+      </p>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @acao.descricao %>
-</p>
+      <p>
+        <strong>Bairro:</strong>
+        <%= @acao.bairro.try(:nome) %>
+      </p>
 
-<p>
-  <strong>Observacao:</strong>
-  <%= @acao.observacao %>
-</p>
+      <p>
+        <strong>Descricao:</strong>
+        <%= @acao.descricao %>
+      </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @acao.status %>
-</p>
+      <% if !@acao.observacao.empty? %>
+        <p>
+          <strong>Observacao:</strong>
+          <%= @acao.observacao %>
+        </p>
+      <% end %>
 
-<%= link_to 'Edit', edit_acao_path(@acao) %> |
-<%= link_to 'Back', acoes_path %>
+      <div class="box-footer clearfix">
+        <%= link_to 'Editar', edit_acao_path(@acao), class: 'btn btn-primary btn-sm' %>
+        <%= link_to 'Voltar', acoes_path, class: 'btn btn-danger btn-sm' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

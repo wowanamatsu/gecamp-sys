@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921100224) do
+ActiveRecord::Schema.define(version: 20170922144141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20170921100224) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cidade_id"
+    t.bigint "bairro_id"
+    t.string "endereco"
+    t.index ["bairro_id"], name: "index_acoes_on_bairro_id"
+    t.index ["cidade_id"], name: "index_acoes_on_cidade_id"
     t.index ["pessoa_id"], name: "index_acoes_on_pessoa_id"
     t.index ["user_id"], name: "index_acoes_on_user_id"
   end
@@ -159,6 +164,8 @@ ActiveRecord::Schema.define(version: 20170921100224) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "acoes", "bairros"
+  add_foreign_key "acoes", "cidades"
   add_foreign_key "acoes", "pessoas"
   add_foreign_key "acoes", "users"
   add_foreign_key "bairros", "cidades"
