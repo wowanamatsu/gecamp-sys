@@ -1,5 +1,5 @@
 <div id="acoes">
-  <div class="box box-success">
+  <div class='box <%= @acao.status == 'aberto' ? 'box-danger' : 'box-success' %>'>
     <div class="box-header">
       <h3 class="box-title"><%= @acao.pessoa.try(:nome) %></h3>
       <div class="box-tools">
@@ -54,7 +54,7 @@
 
       <div class="box-footer clearfix">
         <%= link_to 'Editar', edit_acao_path(@acao), class: 'btn btn-primary btn-sm' %>
-        <%= link_to 'Voltar', acoes_path, class: 'btn btn-danger btn-sm' %>
+        <%= link_to 'Voltar', :back, class: 'btn btn-danger btn-sm' %>
       </div>
     </div>
   </div>

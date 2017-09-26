@@ -167,6 +167,7 @@
                     <td><%= acao.status.capitalize %></td>
                     <td><%= data_mask(acao.agendamento) %></td>
                     <td style="text-align: right">
+                      <%= link_to 'Mostrar', acao_path(acao), class: 'btn btn-xs btn-primary' %>
                       <%= link_to 'Editar', edit_acao_path(acao), class: 'btn btn-xs btn-success' %>
                       <%= link_to 'Deletar', acao, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
                     </td>
