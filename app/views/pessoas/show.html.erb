@@ -37,6 +37,9 @@
             <% if params[:equipe] %>
               <%= link_to equipes_path, class: 'btn btn-success btn-block' do %>
               <b>Voltar</b>
+            <% end elsif params[:home] %>
+              <%= link_to root_path, class: 'btn btn-success btn-block' do %>
+              <b>Voltar</b>
             <% end else %>
               <%= link_to pessoas_path, class: 'btn btn-success btn-block' do %>
               <b>Voltar</b>

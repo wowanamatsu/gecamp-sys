@@ -23,9 +23,10 @@
             </td>
             <td>
               <%= data_mask(pessoa.data_nascimento) %>
-              <span class="label label-success">
+              <%= link_to 'Exibir', pessoa_path(pessoa, :home => true), class: 'btn btn-xs btn-primary' %>
+              <!-- <span class="label label-success">
                 <span class="fa fa-heart"></span>
-              </span>
+              </span> -->
             </td>
           </tr>
           <% end %>
