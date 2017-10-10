@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
+    if !current_user.ativo?
+      sign_out current_user
+      redirect_to root_path
+    end
     @pessoas = Pessoa
                .select(:id, :nome, :data_nascimento, :celular)
                .where("EXTRACT(DAY FROM data_nascimento) = #{Time.now.strftime('%d').to_i}")
