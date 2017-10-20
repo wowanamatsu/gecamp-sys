@@ -36,7 +36,8 @@ class PessoasController < ApplicationController
       render action: :index, layout: request.xhr? == nil
 
     else
-      @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular, :apoiador, :pesquisado, :visitado)
+      # @pessoas = Pessoa.select(:id, :nome, :endereco, :cidade_id, :telefone_residencial, :celular, :apoiador, :pesquisado, :visitado)
+      @pessoas = Pessoa.get_assocs
       .where(:ativo => 'ativo')
       .order(:nome).page(params[:page] || 1).per(10)
       render action: :index, layout: request.xhr? == nil

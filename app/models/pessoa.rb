@@ -68,6 +68,10 @@ class Pessoa < ApplicationRecord
     .where(:ativo => 'ativo')
   end
 
+  def self.get_assocs()
+    self.joins(:cidade).select('pessoas.id, pessoas.nome, pessoas.endereco, cidades.nome as cidade_nome, pessoas.telefone_residencial, pessoas.celular, pessoas.apoiador, pessoas.pesquisado, pessoas.visitado')
+  end
+
   def apoiador?
     if self.apoiador == 'sim_apoiador'
       'SIM'

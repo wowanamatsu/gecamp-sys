@@ -1,6 +1,7 @@
 class RelatoriosController < ApplicationController
 	
 	def index
+		authorize! :index, ApplicationController
 		if params[:pessoa]
 			if params[:pessoa]['indicado_por'] and params[:pessoa]['indicado_por'] != ''
 				@people = Pessoa.where("pessoa_id = ?", params[:pessoa]['indicado_por'])

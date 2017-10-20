@@ -5,7 +5,7 @@ class Ability
       can :manage, :all
 
     elsif user.ativo? and user.normal?
-      can [:read, :create, :update], [Pessoa, Bairro, Cidade, Estado, Municipio, Profissao, Seguimento, Acao]
+      can [:read, :create], [Pessoa, Bairro, Cidade, Estado, Municipio, Profissao, Seguimento, Acao]
       
       can [:read, :update], User
 

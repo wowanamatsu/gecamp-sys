@@ -14,6 +14,7 @@
         <thead>
           <tr>
             <th width="45%">Nome</th>
+            <th width="10%"></th>
             <th width="10%">Função</th>
             <th colspan="3"></th>
           </tr>
@@ -23,6 +24,15 @@
           <% @equipes.each do |pessoa| %>
           <tr>
             <td><%= pessoa.nome %></td>
+            <td>
+              <% if pessoa.acoes.count > 0 %>
+                <span class="badge bg-purple">
+                <strong><%= pessoa.acoes.count %></strong></span>
+              <% else %>
+                <span class="badge bg-black">
+                &nbsp</span>
+              <% end %>
+              </td>
             <td><%= pessoa.funcao.try(:nome) %></td>
             <td style="text-align: right;">
               <%= link_to 'Exibir', pessoa_path(pessoa, :equipe => true), class: 'btn btn-xs btn-primary' %>
@@ -43,6 +53,10 @@
       <% end %>
     </div>
     <div class="box-footer clearfix">
+        <div style="text-align: center; font-size: 12px;">
+        <span class="badge bg-purple">&nbsp</span> ações
+        <span class="badge bg-red">&nbsp</span> sem ações
+      </div>
         <%= page_entries_info @equipes %>
       <div class="kaminari">
         <%= paginate @equipes %>
