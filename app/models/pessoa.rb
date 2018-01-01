@@ -21,7 +21,7 @@ class Pessoa < ApplicationRecord
   validates_presence_of :sexo, :cor, :estado_id, :municipio_id, message: 'deve ser preenchido.'
   validates_presence_of :estado_civil, :bairro_id, :profissao_id, message: 'deve ser preenchido.'
   validates_presence_of :equipe, :pesquisado, :visitado, :apoiador, message: 'deve ser preenchido.'
-  
+
   validates_format_of :email, :allow_blank => true, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: 'formato incorreto.'
   validates_uniqueness_of :email, :allow_blank => true, message: 'e-mail já cadastrado.'
 
@@ -30,17 +30,17 @@ class Pessoa < ApplicationRecord
   end
 
   def self.search(query)
-    where("(TRANSLATE(lower(pessoas.nome), 
-      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
-      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+    where("(TRANSLATE(lower(pessoas.nome),
+      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ',
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC')
       like ?)", "%#{query.downcase}%")
     .where(:ativo => 'ativo')
   end
 
   def self.main_search(query)
-    cidade = Cidade.where("(TRANSLATE(lower(cidades.nome), 
-      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
-      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
+    cidade = Cidade.where("(TRANSLATE(lower(cidades.nome),
+      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ',
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC')
       like ?)", "%#{query}%")
 
     busca_cidade = nil
@@ -50,16 +50,16 @@ class Pessoa < ApplicationRecord
       busca_cidade = 9999
     end
 
-    where("(TRANSLATE(lower(pessoas.nome), 
-      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ', 
-      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') 
-      like ?) 
+    where("(TRANSLATE(lower(pessoas.nome),
+      'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ',
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC')
+      like ?)
 
-      OR pessoas.telefone_residencial LIKE ? 
+      OR pessoas.telefone_residencial LIKE ?
 
       OR (TRANSLATE(lower(pessoas.endereco),
       'áéíóúàèìòùãõâêîôôäëïöüçÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ',
-      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') LIKE ?) 
+      'aeiouaeiouaoaeiooaeioucAEIOUAEIOUAOAEIOOAEIOUC') LIKE ?)
 
       OR pessoas.celular LIKE ? OR pessoas.cidade_id = ?",
 
@@ -69,7 +69,13 @@ class Pessoa < ApplicationRecord
   end
 
   def self.get_assocs()
-    self.joins(:cidade).select('pessoas.id, pessoas.nome, pessoas.endereco, cidades.nome as cidade_nome, pessoas.telefone_residencial, pessoas.celular, pessoas.apoiador, pessoas.pesquisado, pessoas.visitado')
+    self.joins(:cidade)
+        .select('pessoas.id, pessoas.nome, pessoas.endereco, cidade_id,
+          pessoas.telefone_residencial, pessoas.celular, pessoas.apoiador, pessoas.pesquisado, pessoas.visitado')
+  end
+
+  def cidade(params)
+    Cidade.find(params).nome
   end
 
   def apoiador?
