@@ -69,12 +69,13 @@ class Pessoa < ApplicationRecord
   end
 
   def self.get_assocs()
-    self.joins(:cidade)
-        .select('pessoas.id, pessoas.nome, pessoas.endereco, cidade_id,
-          pessoas.telefone_residencial, pessoas.celular, pessoas.apoiador, pessoas.pesquisado, pessoas.visitado')
+    self.joins(:cidade).select('pessoas.id, pessoas.nome, pessoas.endereco, pessoas.cidade_id, cidades.nome as cidade_nome, pessoas.telefone_residencial, pessoas.celular, pessoas.apoiador, pessoas.pesquisado, pessoas.visitado')
+    # self.joins(:cidade)
+    #     .select('pessoas.id, pessoas.nome, pessoas.endereco, pessoas.cidade_id as cidade_id,
+    #       pessoas.telefone_residencial, pessoas.celular, pessoas.apoiador, pessoas.pesquisado, pessoas.visitado')
   end
 
-  def cidade(params)
+  def cidade_(params)
     Cidade.find(params).nome
   end
 
